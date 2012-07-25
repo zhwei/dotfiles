@@ -147,3 +147,31 @@ let g:SuperTabDefaultCompletionType="<C-X><C-O>"
  nmap <F7> <ESC>:NERDTreeToggle<RETURN>" Open and close the NERD_tree.vim separately
 
 "==============================================
+"
+"
+"
+" Weather report
+" =============================================
+com! -nargs=1 W echo Weather(<f-args>)
+fun! Weather(city)
+    if !has('python')
+        echoerr 'python is not supported!'
+        return
+    endif
+python <<_EOF_
+try:
+    import vim
+    import xml.etree.ElementTree as ET
+    from urllib2 import urlopen
+    from urllib import urlencode
+    url = 'http://www.google.com/ig/api?' + urlencode({'hl':'zh-cn', 'weather':vim.eval('a:city')})
+    xml = ET.XML(unicode(urlopen(url, timeout=5).read() ,'gb2312').encode('utf-8')).find('.//forecast_conditions')
+    if xml is None:
+        raise Exception('city not found!')
+    weather = {x.tag:x.get('data').encode('utf-8') for x in xml.getchildren()}
+    vim.command('return "%s(%s°C~%s°C)"' % (weather['condition'], weather['low'], weather['high']))
+except Exception, e:
+    vim.command('return "Error: %s"' % e)
+_EOF_
+endfun
+"================================================
