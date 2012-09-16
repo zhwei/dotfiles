@@ -107,6 +107,9 @@ alias diff='colordiff'
 #goagent start
 alias proxy='python2.7 /home/zhwei/goagent/local/proxy.py'
 
+#xiaonei
+alias xiaonei='ssh -qTfnN -D 7070 sdut@210.44.176.208 -p 80'
+
 #路径别名 进入相应的路径时只要 cd ~xxx
 hash -d E="/etc/env.d"
 hash -d C="/etc/conf.d"
