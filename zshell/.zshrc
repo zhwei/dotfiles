@@ -95,6 +95,12 @@ alias cl="clear"
 alias wi='whoami'
 alias et='exit'
 
+#sublime
+#alias subl="'/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl'"
+#alias nano="subl"
+#export EDITOR="subl"
+
+
 #Colordiff
 alias diff='colordiff'
 
@@ -105,7 +111,7 @@ alias diff='colordiff'
    alias bpy='bpython'
 
 #goagent start
-alias proxy='python2.7 /home/zhwei/goagent/local/proxy.py'
+alias proxy='python2.7 /home/zhwei/.goagent/local/proxy.py'
 
 #xiaonei
 alias xiaonei='ssh -qTfnN -D 7070 sdut@210.44.176.208 -p 80'
