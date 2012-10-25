@@ -121,8 +121,9 @@ hash -d E="/etc/env.d"
 hash -d C="/etc/conf.d"
 hash -d I="/etc/rc.d"
 hash -d X="/etc/X11"
-hash -d Y="/home/zhwei/YUNIO"
+hash -d Y="/home/zhwei/Yunio"
 hash -d W="/var/www"
+hash -d O="/home/zhwei/apps/octop"
 
 ##for Emacs在Emacs终端中使用Zsh的一些设置 不推荐在Emacs中使用它
 if [[ "$TERM" == "dumb" ]]; then
@@ -321,3 +322,6 @@ plugins=(git django)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
