@@ -1,0 +1,3 @@
+[submodule "config_git/VIM/.vim/bundle"]
+	path = config_git/VIM/.vim/bundle
+	url = git@github.com:zhwei/config_git.git
