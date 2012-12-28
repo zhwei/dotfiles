@@ -125,7 +125,7 @@ alias proxy='python2.7 /home/zhwei/.goagent2.0/local/proxy.py'
 
 #ssh proxy #openshift
 alias proxy_ssh='ssh -qTfnN -D 7070 89e18343a9774201a7dc87dfbead0a81@diy-zhwei.rhcloud.com'
-alias sshvps='ssh -qTfnN -D 7777 zhwei@p.xiaoblog.info'
+alias sshvps='ssh -qTfnN -D 7777 zhwei@173.252.197.142'
 
 #xiaonei
 alias xiaonei='ssh -qTfnN -D 7070 sdut@210.44.176.208 -p 80'
