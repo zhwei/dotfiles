@@ -131,6 +131,7 @@ set dictionary+=/usr/share/dict/words
 "替代键
 "===============================================
 inoremap jj <ESC>
+map ,pa :setlocal paste! <cr>
 
 "================================================
 

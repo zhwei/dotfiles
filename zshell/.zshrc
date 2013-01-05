@@ -100,6 +100,11 @@ alias et='exit'
 #alias subl="'/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl'"
 #alias nano="subl"
 #export EDITOR="subl"
+#
+#git
+#alias git ad = 'git add .'
+#alias git ci = 'git commit  -a'
+#alias git p = 'git push'
 
 
 #Colordiff
