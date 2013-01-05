@@ -10,7 +10,9 @@ set cinoptions+={2
 filetype indent on
 set autoindent shiftwidth=3
 set background=dark
-colorscheme desert256
+"colorscheme desert256
+"colorscheme molokai
+colorscheme molokai
 
 
 "标点符号自动补全
@@ -34,16 +36,55 @@ endfunction
 
 "==============================================
 
+"等号前后自动加空格
+"==============================================
+let g:equ=1
+"设置= + - * 前后自动空格
+""蛇者 ,后面自动添加空格
+if exists("g:equ")
+	:inoremap = <c-r>=EqualSign('=')<CR>
+	:inoremap + <c-r>=EqualSign('+')<CR>
+	:inoremap - <c-r>=EqualSign('-')<CR>
+	:inoremap * <c-r>=EqualSign('*')<CR>
+"	:inoremap / <c-r>=EqualSign('/')<CR>
+	:inoremap > <c-r>=EqualSign('>')<CR>
+	:inoremap < <c-r>=EqualSign('<')<CR>
+	:inoremap , ,<space>
+endif
+
+function! EqualSign(char)
+	if a:char  =~ '='  && getline('.') =~ ".*("
+		return a:char
+	endif 
+	let ex1 = getline('.')[col('.') - 3]
+	let ex2 = getline('.')[col('.') - 2]
+	
+	if ex1 =~ "[-=+><>\/\*]"
+		if ex2 !~ "\s"
+			return "\<ESC>i".a:char."\<SPACE>"
+		else
+			return "\<ESC>xa".a:char."\<SPACE>"
+		endif 
+	else
+		if ex2 !~ "\s"
+			return "\<SPACE>".a:char."\<SPACE>\<ESC>a"
+		else
+			return a:char."\<SPACE>\<ESC>a"
+		endif 
+	endif
+endf
+"==============================================                                                 
+
 
 "常见设置
 "===============================================
 set nu
+set numberwidth=1
 set smarttab
 set background=dark
 set nocompatible
 set showtabline=1
 setlocal noswapfile
-syntax on
 set foldcolumn=2
 set nobackup
 set shortmess=atI
@@ -66,10 +107,14 @@ set langmenu=zh_CN.UTF-8
 set helplang=cn
 set cindent
 set imcmdline
+
+"tab setting
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set noexpandtab
+filetype indent on
+autocmd FileType python setlocal et sta sw=4 sts=4
+
 set showmode
 set nocp
 set showcmd
@@ -80,6 +125,8 @@ set smarttab
 set lbr
 filetype plugin indent on
 filetype off
+"单词补全字典
+set dictionary+=/usr/share/dict/words
 
 "替代键
 "===============================================
@@ -93,8 +140,6 @@ inoremap jj <ESC>
 set encoding=utf-8
 set fileencodings=utf-8,gbk,cp936,chinese,latin-1
 let &termencoding=&encoding
-"set fileencoding=utf-8
-"set termencoding=utf-8
 "================================================
 
 
@@ -121,6 +166,8 @@ Bundle 'git://github.com/scrooloose/nerdcommenter.git'
 Bundle 'git://github.com/mattn/zencoding-vim.git'  
 Bundle 'git://github.com/tpope/vim-rails.git'  
 Bundle 'git://github.com/kien/ctrlp.vim.git'
+Bundle 'git://github.com/vim-scripts/FuzzyFinder.git'
+Bundle 'git://github.com/vim-scripts/L9.git'
 
 
 "================================================
@@ -148,6 +195,13 @@ let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 
 "==============================================
 "
+"fuzzyfinder
+" ============================================= 
+map ff  :FufCoverageFile!<cr>
+let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|(tmp|log|db/migrate|vendor|pyc)'
+let g:fuf_enumeratingLimit = 5000
+let g:fuf_coveragefile_prompt = '=>'
+
 "
 "
 " Weather report

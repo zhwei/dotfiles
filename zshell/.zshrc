@@ -88,6 +88,7 @@ alias l='ls'
 alias grep='grep --color=auto'
 alias ee='emacsclient -t'
 alias vim='vim -n'
+alias gv='gvim'
 alias gvim='gvim -n'
 alias vi='vim'
 alias la="ls -a"
