@@ -103,6 +103,7 @@ alias et='exit'
 #
 #git
 #alias git ad = 'git add .'
+alias gitaa= 'git add . && git commit -a'
 #alias git ci = 'git commit  -a'
 #alias git p = 'git push'
 
@@ -131,6 +132,7 @@ alias proxy='python2.7 /home/zhwei/.goagent2.0/local/proxy.py'
 
 #ssh proxy #openshift
 alias proxy_ssh='ssh -qTfnN -D 7070 89e18343a9774201a7dc87dfbead0a81@diy-zhwei.rhcloud.com'
+alias ssh_open='ssh ea99d068814f4787a8fe179724d58b0e@dytt-zhwei.rhcloud.com'
 alias sshvps='ssh -qTfnN -D 7777 zhwei@173.252.197.142'
 
 #xiaonei
@@ -397,3 +399,10 @@ check-cmd-self-insert() { zle .self-insert && recolor-cmd }
  
  zle -N self-insert check-cmd-self-insert
  zle -N backward-delete-char check-cmd-backward-delete-char
+
+
+ #go config
+ #export GOROOT = $HOME/go
+ #export GOARCH = 386
+ #export GOOS = linux
+ #export GOBIN = $HOME/bin 

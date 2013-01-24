@@ -14,6 +14,10 @@ set background=dark
 "colorscheme molokai
 colorscheme molokai
 
+"解决konsole 256 色显示问题
+let g:solarized_termcolors=256
+set t_Co=256
+
 
 "标点符号自动补全
 ""==============================================
@@ -35,44 +39,61 @@ function! ClosePair(char)
 endfunction
 
 "==============================================
+"
+"映射快捷键
+"================================================
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+map <leader>td <Plug>TaskList
+"gundo
+map <leader>g :GundoToggle<CR>
+
+"Rope-vim
+map <leader>j :RopeGotoDefinition<CR>
+map <leader>r :RopeRename<CR>
+"search
+nmap <leader>a <Esc>:Ack!
+"==================================================
 
 "等号前后自动加空格
 "==============================================
-let g:equ=1
-"设置= + - * 前后自动空格
-""蛇者 ,后面自动添加空格
-if exists("g:equ")
-	:inoremap = <c-r>=EqualSign('=')<CR>
-	:inoremap + <c-r>=EqualSign('+')<CR>
-	:inoremap - <c-r>=EqualSign('-')<CR>
-	:inoremap * <c-r>=EqualSign('*')<CR>
-"	:inoremap / <c-r>=EqualSign('/')<CR>
-	:inoremap > <c-r>=EqualSign('>')<CR>
-	:inoremap < <c-r>=EqualSign('<')<CR>
-	:inoremap , ,<space>
-endif
-
-function! EqualSign(char)
-	if a:char  =~ '='  && getline('.') =~ ".*("
-		return a:char
-	endif 
-	let ex1 = getline('.')[col('.') - 3]
-	let ex2 = getline('.')[col('.') - 2]
-	
-	if ex1 =~ "[-=+><>\/\*]"
-		if ex2 !~ "\s"
-			return "\<ESC>i".a:char."\<SPACE>"
-		else
-			return "\<ESC>xa".a:char."\<SPACE>"
-		endif 
-	else
-		if ex2 !~ "\s"
-			return "\<SPACE>".a:char."\<SPACE>\<ESC>a"
-		else
-			return a:char."\<SPACE>\<ESC>a"
-		endif 
-	endif
-endf
+"let g:equ=1
+""设置= + - * 前后自动空格
+"""蛇者 ,后面自动添加空格
+"if exists("g:equ")
+"	:inoremap = <c-r>=EqualSign('=')<CR>
+"	:inoremap + <c-r>=EqualSign('+')<CR>
+"	:inoremap - <c-r>=EqualSign('-')<CR>
+"	:inoremap * <c-r>=EqualSign('*')<CR>
+""	:inoremap / <c-r>=EqualSign('/')<CR>
+"	:inoremap > <c-r>=EqualSign('>')<CR>
+"	:inoremap < <c-r>=EqualSign('<')<CR>
+"	:inoremap , ,<space>
+"endif
+"
+"function! EqualSign(char)
+"	if a:char  =~ '='  && getline('.') =~ ".*("
+"		return a:char
+"	endif 
+"	let ex1 = getline('.')[col('.') - 3]
+"	let ex2 = getline('.')[col('.') - 2]
+"	
+"	if ex1 =~ "[-=+><>\/\*]"
+"		if ex2 !~ "\s"
+"			return "\<ESC>i".a:char."\<SPACE>"
+"		else
+"			return "\<ESC>xa".a:char."\<SPACE>"
+"		endif 
+"	else
+"		if ex2 !~ "\s"
+"			return "\<SPACE>".a:char."\<SPACE>\<ESC>a"
+"		else
+"			return a:char."\<SPACE>\<ESC>a"
+"		endif 
+"	endif
+"endf
 "==============================================                                                 
 
 
@@ -169,8 +190,15 @@ Bundle 'git://github.com/tpope/vim-rails.git'
 Bundle 'git://github.com/kien/ctrlp.vim.git'
 Bundle 'git://github.com/vim-scripts/FuzzyFinder.git'
 Bundle 'git://github.com/vim-scripts/L9.git'
-
-
+Bundle 'git://github.com/sjl/gundo.vim.git'
+Bundle 'git://github.com/mitechie/pyflakes-pathogen.git'
+Bundle 'git://github.com/alfredodeza/pytest.vim.git'
+Bundle 'git://github.com/vim-scripts/pep8.git'
+Bundle 'git://github.com/fs111/pydoc.vim.git'
+Bundle 'git://github.com/kevinw/pyflakes-vim.git'
+Bundle 'git://github.com/sontek/rope-vim.git'
+Bundle 'git://github.com/tpope/vim-fugitive.git'
+Bundle 'git://github.com/majutsushi/tagbar.git'
 "================================================
 
 
@@ -179,13 +207,22 @@ Bundle 'git://github.com/vim-scripts/L9.git'
 "plugin setting
 "================================================
 
+"tagbar
+"
+nmap <silent> <F4> :TagbarToggle<CR>
+let g:tagbar_ctags_bin = 'ctags'
+let g:tagbar_width = 30
 
 "supertab
 
+au FileType python set omnifunc=pythoncomplete#Complete
+
+let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabRetainCompletionType=2
 let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 
-"==============================================
+set completeopt=menuone,longest,preview
+
 ""NERDTree plugin
 
   let NERDTreeWinPos = "left" "where NERD tree window is placed on the screen
@@ -194,19 +231,18 @@ let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 	
  nmap <F7> <ESC>:NERDTreeToggle<RETURN>" Open and close the NERD_tree.vim separately
 
-"==============================================
 "
 "fuzzyfinder
-" ============================================= 
+"
 map ff  :FufCoverageFile!<cr>
 let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|(tmp|log|db/migrate|vendor|pyc)'
-let g:fuf_enumeratingLimit = 5000
+let g:fuf_enumeratingLimit = 100
 let g:fuf_coveragefile_prompt = '=>'
 
 "
 "
 " Weather report
-" =============================================
+"
 com! -nargs=1 W echo Weather(<f-args>)
 fun! Weather(city)
     if !has('python')
@@ -229,4 +265,62 @@ except Exception, e:
     vim.command('return "Error: %s"' % e)
 _EOF_
 endfun
-"================================================
+"
+"
+"autopep8
+"
+map <F11> :call FormartSrc()<CR>
+"
+""定义FormartSrc()
+func FormartSrc()
+	exec "w"
+	if &filetype == 'c'
+		exec "!astyle --style=ansi --one-line=keep-statements -a --suffix=none %"
+	elseif &filetype == 'cpp' || &filetype == 'hpp'
+		exec "r !astyle --style=ansi --one-line=keep-statements -a --suffix=none %> /dev/null 2>&1"
+	elseif &filetype == 'perl'
+		exec "!astyle --style=gnu --suffix=none %"
+	elseif &filetype == 'py'||&filetype == 'python'
+		exec "r !autopep8 -i --aggressive %"
+	elseif &filetype == 'java'
+		exec "!astyle --style=java --suffix=none %"
+	elseif &filetype == 'jsp'
+		exec "!astyle --style=gnu --suffix=none %"
+	elseif &filetype == 'xml'
+		exec "!astyle --style=gnu --suffix=none %"
+	endif
+	exec "e! %"
+endfunc
+"结束定义FormartSrc
+"
+"
+"pyflaskes
+"
+
+let g:pyflakes_use_quickfix = 0
+
+"
+"
+"pep8
+"
+"
+let g:pep8_map='<leader>8'
+"
+"
+"
+"fugitive
+"
+"%{fugitive#statusline()}
+"
+"
+"py.test
+"
+" Execute the tests
+nmap <silent><Leader>tf <Esc>:Pytest file<CR>
+nmap <silent><Leader>tc <Esc>:Pytest class<CR>
+nmap <silent><Leader>tm <Esc>:Pytest method<CR>
+" cycle through test errors
+nmap <silent><Leader>tn <Esc>:Pytest next<CR>
+nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
+nmap <silent><Leader>te <Esc>:Pytest error<CR>
+"
