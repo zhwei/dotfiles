@@ -96,6 +96,10 @@ alias cl="clear"
 alias wi='whoami'
 alias et='exit'
 
+#webbrowsers
+alias f='firefox'
+alias ch='google-chrome'
+
 #sublime
 #alias subl="'/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl'"
 #alias nano="subl"
