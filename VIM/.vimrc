@@ -56,55 +56,16 @@ map <leader>r :RopeRename<CR>
 "search
 nmap <leader>a <Esc>:Ack!
 "==================================================
-
-"等号前后自动加空格
-"==============================================
-"let g:equ=1
-""设置= + - * 前后自动空格
-"""蛇者 ,后面自动添加空格
-"if exists("g:equ")
-"	:inoremap = <c-r>=EqualSign('=')<CR>
-"	:inoremap + <c-r>=EqualSign('+')<CR>
-"	:inoremap - <c-r>=EqualSign('-')<CR>
-"	:inoremap * <c-r>=EqualSign('*')<CR>
-""	:inoremap / <c-r>=EqualSign('/')<CR>
-"	:inoremap > <c-r>=EqualSign('>')<CR>
-"	:inoremap < <c-r>=EqualSign('<')<CR>
-"	:inoremap , ,<space>
-"endif
 "
-"function! EqualSign(char)
-"	if a:char  =~ '='  && getline('.') =~ ".*("
-"		return a:char
-"	endif 
-"	let ex1 = getline('.')[col('.') - 3]
-"	let ex2 = getline('.')[col('.') - 2]
-"	
-"	if ex1 =~ "[-=+><>\/\*]"
-"		if ex2 !~ "\s"
-"			return "\<ESC>i".a:char."\<SPACE>"
-"		else
-"			return "\<ESC>xa".a:char."\<SPACE>"
-"		endif 
-"	else
-"		if ex2 !~ "\s"
-"			return "\<SPACE>".a:char."\<SPACE>\<ESC>a"
-"		else
-"			return a:char."\<SPACE>\<ESC>a"
-"		endif 
-"	endif
-"endf
-"==============================================                                                 
+
 
 
 "常见设置
 "===============================================
 set nu
 set numberwidth=1
-set smarttab
 set background=dark
 set nocompatible
-set showtabline=1
 setlocal noswapfile
 set foldcolumn=2
 set nobackup
@@ -133,9 +94,12 @@ set cindent
 set imcmdline
 
 "tab setting
+set showtabline=1
+set smarttab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+
 filetype indent on
 autocmd FileType python setlocal et sta sw=4 sts=4
 
@@ -145,7 +109,6 @@ set showcmd
 set ttyfast
 "set ruler
 " set nowrap
-set smarttab
 set lbr
 filetype plugin indent on
 filetype off
@@ -202,6 +165,9 @@ Bundle 'git://github.com/kevinw/pyflakes-vim.git'
 Bundle 'git://github.com/sontek/rope-vim.git'
 Bundle 'git://github.com/tpope/vim-fugitive.git'
 Bundle 'git://github.com/majutsushi/tagbar.git'
+"Bundle 'snipmate'
+Bundle 'git://github.com/kchmck/vim-coffee-script.git'
+Bundle 'git://github.com/Glench/Vim-Jinja2-Syntax.git'
 "================================================
 
 
@@ -209,6 +175,14 @@ Bundle 'git://github.com/majutsushi/tagbar.git'
 
 "plugin setting
 "================================================
+"
+"
+"snipMate
+""snipmate_for_django
+map ,ja :set ft=htmldjango.html <cr>
+map ,dj :set ft=python.django <cr>
+"autocmd FileType python set ft=python.django " For SnipMate
+"autocmd FileType html set ft=htmldjango.html " For SnipMate
 
 "tagbar
 "
@@ -222,7 +196,7 @@ au FileType python set omnifunc=pythoncomplete#Complete
 
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabRetainCompletionType=2
-let g:SuperTabDefaultCompletionType="<C-X><C-O>"
+"let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 
 
 set completeopt=menuone,longest,preview
@@ -244,31 +218,6 @@ let g:fuf_enumeratingLimit = 100
 let g:fuf_coveragefile_prompt = '=>'
 
 "
-"
-" Weather report
-"
-com! -nargs=1 W echo Weather(<f-args>)
-fun! Weather(city)
-    if !has('python')
-        echoerr 'python is not supported!'
-        return
-    endif
-python <<_EOF_
-try:
-    import vim
-    import xml.etree.ElementTree as ET
-    from urllib2 import urlopen
-    from urllib import urlencode
-    url = 'http://www.google.com/ig/api?' + urlencode({'hl':'zh-cn', 'weather':vim.eval('a:city')})
-    xml = ET.XML(unicode(urlopen(url, timeout=5).read() ,'gb2312').encode('utf-8')).find('.//forecast_conditions')
-    if xml is None:
-        raise Exception('city not found!')
-    weather = {x.tag:x.get('data').encode('utf-8') for x in xml.getchildren()}
-    vim.command('return "%s(%s°C~%s°C)"' % (weather['condition'], weather['low'], weather['high']))
-except Exception, e:
-    vim.command('return "Error: %s"' % e)
-_EOF_
-endfun
 "
 "
 "autopep8
@@ -397,13 +346,13 @@ func! CompileRunGcc()
 	elseif &filetype == 'python'
 		exec "!python2.7 %"
     elseif &filetype == 'html'
-        exec "!firefox % &"
+        exec "!google-chrome % &"
     elseif &filetype == 'mkd'
 "        exec "!touch ~/temp.html"
 "        exec "!perl ~/.vim/markdown.pl % > /tmp/temp.html<"<CR>
 "        exec "!markdown % > /tmp/temp.html<"<CR>
-"        exec "md"
-        exec "!firefox /tmp/markdown.html &"
+"        exec "mkd"
+        exec "!google-chrome /tmp/markdown.html &"
 	endif
 endfunc
 "C,C++的调试

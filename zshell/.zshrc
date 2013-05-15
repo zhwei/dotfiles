@@ -2,6 +2,11 @@
 ##RPROMPT='%/'
 #PROMPT='%{[36m%}%n%{[35m%}@%{[34m%}%M %{[33m%}%D %T  %{[32m%}%/ 
 #%{[31m%}>>%{[m%}'
+#
+#fcitx  chinese input
+export GTK_IM_MODULE=xim
+export QT_IM_MODULE=xim
+
 
 
 #关于历史纪录的配置
@@ -125,6 +130,8 @@ alias lxd='python2.7 /home/zhwei/apps/xunlei-lixian/lixian_cli.py download'
 #baidu music downloader
 alias bmd='python2.7 /home/zhwei/apps/baidu_music/getBaiduMusic.py -d ~/Music'
 
+# ranger
+alias r='ranger'
 
 ##python
    alias py='python'
@@ -132,7 +139,7 @@ alias bmd='python2.7 /home/zhwei/apps/baidu_music/getBaiduMusic.py -d ~/Music'
    alias bpy='bpython'
 
 #goagent start
-alias proxy='python2.7 /home/zhwei/.goagent2.0/local/proxy.py'
+alias goagent='python2.7 /home/zhwei/Dropbox/tools/goagent/local/proxy.py'
 
 #ssh proxy #openshift
 alias proxy_ssh='ssh -qTfnN -D 7070 89e18343a9774201a7dc87dfbead0a81@diy-zhwei.rhcloud.com'
@@ -140,11 +147,15 @@ alias ssh_open='ssh ea99d068814f4787a8fe179724d58b0e@dytt-zhwei.rhcloud.com'
 alias sshvps='ssh -qTfnN -D 7777 zhwei@173.252.197.142'
 
 #xiaonei
-alias xiaonei='ssh -qTfnN -D 7070 sdut@210.44.176.208 -p 80'
+alias xiaonei='ssh -qTfnN -D 7070 group@210.44.176.241 -p 80'
+
+#virtualenv
+alias ac_env="source env/bin/activate"
 
 #路径别名 进入相应的路径时只要 cd ~xxx
 hash -d E="/etc/env.d"
 hash -d C="/etc/conf.d"
+hash -d D="/home/zhwei/Dropbox"
 hash -d I="/etc/rc.d"
 hash -d X="/etc/X11"
 hash -d Y="/home/zhwei/Yunio"
@@ -406,7 +417,7 @@ check-cmd-self-insert() { zle .self-insert && recolor-cmd }
 
 
  #go config
- #export GOROOT = $HOME/go
- #export GOARCH = 386
- #export GOOS = linux
- #export GOBIN = $HOME/bin 
+#export GOROOT = $HOME/go
+#export GOARCH = 386
+#export GOOS = linux
+#export GOBIN = $HOME/go/bin 
