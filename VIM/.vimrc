@@ -168,6 +168,7 @@ Bundle 'git://github.com/majutsushi/tagbar.git'
 "Bundle 'snipmate'
 Bundle 'git://github.com/kchmck/vim-coffee-script.git'
 Bundle 'git://github.com/Glench/Vim-Jinja2-Syntax.git'
+"Bundle 'Yggdroot/indentLine'  " 与markdown语法有冲突
 "================================================
 
 
@@ -222,7 +223,7 @@ let g:fuf_coveragefile_prompt = '=>'
 "
 "autopep8
 "
-map <F11> :call FormartSrc()<CR>
+map <F9> :call FormartSrc()<CR>
 "
 ""定义FormartSrc()
 func FormartSrc()
@@ -281,7 +282,7 @@ nmap <silent><Leader>te <Esc>:Pytest error<CR>
 """""新文件标题
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "新建.c,.h,.sh,.java文件，自动插入文件头 
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java,*.py,*.md exec ":call SetTitle()" 
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java,*.py, exec ":call SetTitle()" 
 ""定义函数SetTitle，自动插入文件头 
 func SetTitle() 
 	"如果文件类型为.sh文件 
@@ -298,17 +299,8 @@ func SetTitle()
         call setline(1,"#!/usr/bin/env python")
         call append(line("."),"# -*- coding: utf-8 -*-")
 		call append(line(".")+1, "") 
-    elseif &filetype == 'mkd'
-        call setline(1,"<head><meta charset=\"UTF-8\"></head>")
-	else 
-		call setline(1, "/*************************************************************************") 
-		call append(line("."), "	> File Name: ".expand("%")) 
-		call append(line(".")+1, "	> Author: zhwei") 
-		call append(line(".")+2, "	> Mail: zhwei.yes@gmail.com ") 
-		call append(line(".")+3, "	> Created Time: ".strftime("%c")) 
-		call append(line(".")+4, " ************************************************************************/") 
-		call append(line(".")+5, "")
 	endif
+
 	if &filetype == 'cpp'
 		call append(line(".")+6, "#include<iostream>")
 		call append(line(".")+7, "using namespace std;")
