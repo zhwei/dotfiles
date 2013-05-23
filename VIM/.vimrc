@@ -10,8 +10,6 @@ set cinoptions+={2
 filetype indent on
 set autoindent shiftwidth=3
 set background=dark
-"colorscheme desert256
-"colorscheme molokai
 colorscheme molokai
 
 "解决konsole 256 色显示问题
@@ -47,7 +45,8 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 map <leader>td <Plug>TaskList
-"gundo
+
+"gundo 可视化 Vim 的撤销列表
 map <leader>g :GundoToggle<CR>
 
 "Rope-vim
@@ -147,12 +146,9 @@ Bundle 'gmarik/vundle'
 Bundle 'SuperTab'   
 Bundle 'git://github.com/scrooloose/nerdtree.git'   
 Bundle 'git://github.com/msanders/snipmate.vim.git'   
-Bundle 'vimwiki'  
 Bundle 'VimIM'  
-Bundle 'AuthorInfo'  
 Bundle 'git://github.com/scrooloose/nerdcommenter.git'  
 Bundle 'git://github.com/mattn/zencoding-vim.git'  
-Bundle 'git://github.com/tpope/vim-rails.git'  
 Bundle 'git://github.com/kien/ctrlp.vim.git'
 Bundle 'git://github.com/vim-scripts/FuzzyFinder.git'
 Bundle 'git://github.com/vim-scripts/L9.git'
@@ -163,12 +159,10 @@ Bundle 'git://github.com/vim-scripts/pep8.git'
 Bundle 'git://github.com/fs111/pydoc.vim.git'
 Bundle 'git://github.com/kevinw/pyflakes-vim.git'
 Bundle 'git://github.com/sontek/rope-vim.git'
-Bundle 'git://github.com/tpope/vim-fugitive.git'
 Bundle 'git://github.com/majutsushi/tagbar.git'
-"Bundle 'snipmate'
 Bundle 'git://github.com/kchmck/vim-coffee-script.git'
 Bundle 'git://github.com/Glench/Vim-Jinja2-Syntax.git'
-"Bundle 'Yggdroot/indentLine'  " 与markdown语法有冲突
+"Bundle 'Yggdroot/indentLine'  " 与vimwiki语法显示有冲突
 "================================================
 
 
@@ -180,11 +174,11 @@ Bundle 'git://github.com/Glench/Vim-Jinja2-Syntax.git'
 "
 "snipMate
 ""snipmate_for_django
-map ,ja :set ft=htmldjango.html <cr>
 map ,dj :set ft=python.django <cr>
-"autocmd FileType python set ft=python.django " For SnipMate
-"autocmd FileType html set ft=htmldjango.html " For SnipMate
-
+autocmd FileType html set ft=htmldjango.html " For SnipMate
+"map ,ja :set ft=htmldjango.html <cr>
+"
+"
 "tagbar
 "
 nmap <silent> <F4> :TagbarToggle<CR>
@@ -193,23 +187,28 @@ let g:tagbar_width = 30
 
 "supertab
 
-au FileType python set omnifunc=pythoncomplete#Complete
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabRetainCompletionType=2
+set ofu=syntaxcomplete#Complete
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+
+"let g:SuperTabDefaultCompletionType = "context"
+"let g:SuperTabRetainCompletionType=2
 "let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 
 
 set completeopt=menuone,longest,preview
 
+
 ""NERDTree plugin
-
-  let NERDTreeWinPos = "left" "where NERD tree window is placed on the screen
-
-"let NERDTreeWinSize = 31 "size of the NERD tree
-	
- nmap <F7> <ESC>:NERDTreeToggle<RETURN>" Open and close the NERD_tree.vim separately
-
+"
+let NERDTreeWinPos = "left" "where NERD tree window is placed on the screen
+nmap <F7> <ESC>:NERDTreeToggle<RETURN>" Open and close the NERD_tree.vim separately
 "
 "fuzzyfinder
 "
@@ -250,7 +249,7 @@ endfunc
 "
 "pyflaskes
 "
-
+"
 let g:pyflakes_use_quickfix = 0
 
 "
@@ -262,65 +261,28 @@ let g:pep8_map='<leader>8'
 "
 "
 "
-"fugitive
-"
-"%{fugitive#statusline()}
-"
-"
-"py.test
-"
-" Execute the tests
-nmap <silent><Leader>tf <Esc>:Pytest file<CR>
-nmap <silent><Leader>tc <Esc>:Pytest class<CR>
-nmap <silent><Leader>tm <Esc>:Pytest method<CR>
-" cycle through test errors
-nmap <silent><Leader>tn <Esc>:Pytest next<CR>
-nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
-nmap <silent><Leader>te <Esc>:Pytest error<CR>
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""新文件标题
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "新建.c,.h,.sh,.java文件，自动插入文件头 
 autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java,*.py, exec ":call SetTitle()" 
 ""定义函数SetTitle，自动插入文件头 
 func SetTitle() 
 	"如果文件类型为.sh文件 
-	if &filetype == 'sh' 
-		call setline(1,"\#########################################################################") 
-		call append(line("."), "\# File Name: ".expand("%")) 
-		call append(line(".")+1, "\# Author: zhwei") 
-		call append(line(".")+2, "\# mail: zhwei.yes@gmail.com") 
-		call append(line(".")+3, "\# Created Time: ".strftime("%c")) 
-		call append(line(".")+4, "\#########################################################################") 
-		call append(line(".")+5, "\#!/bin/bash") 
-		call append(line(".")+6, "") 
-    elseif &filetype == 'python'
+    if &filetype == 'python'
         call setline(1,"#!/usr/bin/env python")
         call append(line("."),"# -*- coding: utf-8 -*-")
 		call append(line(".")+1, "") 
 	endif
 
-	if &filetype == 'cpp'
-		call append(line(".")+6, "#include<iostream>")
-		call append(line(".")+7, "using namespace std;")
-		call append(line(".")+8, "")
-	endif
 	if &filetype == 'c'
 		call append(line(".")+6, "#include<stdio.h>")
 		call append(line(".")+7, "")
 	endif
-"	if &filetype == 'java'
-"		call append(line(".")+6,"public class ".expand("%"))
-"		call append(line(".")+7,"")
-"	endif
 	"新建文件后，自动定位到文件末尾
 	autocmd BufNewFile * normal G
 endfunc 
 "''''''''''''''''''''''''''''''''''''"
 "
 "
-""C，C++ 按F5编译运行
+""C，C++ ,python 按F5编译运行
 map <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
@@ -330,9 +292,6 @@ func! CompileRunGcc()
 	elseif &filetype == 'cpp'
 		exec "!g++ % -o %<"
 		exec "! ./%<"
-	elseif &filetype == 'java' 
-		exec "!javac %" 
-		exec "!java %<"
 	elseif &filetype == 'sh'
 		:!./%
 	elseif &filetype == 'python'
@@ -346,13 +305,6 @@ func! CompileRunGcc()
 "        exec "mkd"
         exec "!google-chrome /tmp/markdown.html &"
 	endif
-endfunc
-"C,C++的调试
-map <F8> :call Rungdb()<CR>
-func! Rungdb()
-	exec "w"
-	exec "!g++ % -g -o %<"
-	exec "!gdb ./%<"
 endfunc
 
 """"""""""""""""""""""""""""""""""""""""

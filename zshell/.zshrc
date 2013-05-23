@@ -160,7 +160,7 @@ hash -d I="/etc/rc.d"
 hash -d X="/etc/X11"
 hash -d Y="/home/zhwei/Yunio"
 hash -d W="/var/www"
-hash -d O="/home/zhwei/apps/octop"
+hash -d J="/home/zhwei/apps/jekyll_blog/"
 hash -d V="/home/zhwei/vmbox"
 
 ##for Emacs在Emacs终端中使用Zsh的一些设置 不推荐在Emacs中使用它
