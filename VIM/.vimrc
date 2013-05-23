@@ -1,4 +1,4 @@
-"zhwei自写版
+"zhwei
 "============
 "==============================================
 
@@ -15,6 +15,7 @@ colorscheme molokai
 "解决konsole 256 色显示问题
 let g:solarized_termcolors=256
 set t_Co=256
+
 
 
 "标点符号自动补全
@@ -70,21 +71,20 @@ set foldcolumn=2
 set nobackup
 set shortmess=atI
 set report=0
-" set noerrorbells
-"
+
+" 下面两条配置使得tab显示为 ^I ,行尾空格显示为+
+set list
+set listchars=trail:+
+
 " 自动加载文件
 set autoread
 set showmatch
 set matchtime=5
 set hlsearch
 set incsearch
-set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$
 set scrolloff=3
-" set novisualbell
 set laststatus=2
-" set formatoptions=tcrqn
 set formatoptions+=mM
-" set formatoptions+=tcroqn2mBM1
 set autoindent
 set smartindent
 set langmenu=zh_CN.UTF-8
@@ -187,7 +187,6 @@ let g:tagbar_width = 30
 
 "supertab
 
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 set ofu=syntaxcomplete#Complete
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -197,9 +196,9 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 
-"let g:SuperTabDefaultCompletionType = "context"
-"let g:SuperTabRetainCompletionType=2
-"let g:SuperTabDefaultCompletionType="<C-X><C-O>"
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabRetainCompletionType=2
+let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 
 
 set completeopt=menuone,longest,preview

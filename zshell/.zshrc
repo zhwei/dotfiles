@@ -111,8 +111,8 @@ alias ch='google-chrome'
 #export EDITOR="subl"
 #
 #git
-#alias git ad = 'git add .'
-alias gitaa= 'git add . && git commit -a'
+alias git ad='git add .'
+alias gitaa='git add . && git commit -a'
 #alias git ci = 'git commit  -a'
 #alias git p = 'git push'
 
