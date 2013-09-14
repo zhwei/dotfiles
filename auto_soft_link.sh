@@ -7,10 +7,10 @@
 #!/bin/bash
 
 # SnipMate_for_django
-ln /home/zhwei/apps/snipmate_for_django/snippets/django.snippets /home/zhwei/config/VIM/.vim/bundle/snipmate.vim/snippets/
-ln /home/zhwei/apps/snipmate_for_django/snippets/htmldjango.snippets /home/zhwei/config/VIM/.vim/bundle/snipmate.vim/snippets/
+ln -s /home/zhwei/apps/snipmate_for_django/snippets/django.snippets /home/zhwei/config/VIM/.vim/bundle/snipmate.vim/snippets/
+ln -s /home/zhwei/apps/snipmate_for_django/snippets/htmldjango.snippets /home/zhwei/config/VIM/.vim/bundle/snipmate.vim/snippets/
 
-ln ~/config/VIM/.vim ~/
-ln ~/config/VIM/.vimrc ~/
-ln ~/config/zshell/.oh-my-zsh/ ~/
-ln ~/config/zshell/.zshrc ~/
+ln -s ~/config/VIM/.vim ~/
+ln -s ~/config/VIM/.vimrc ~/
+ln -s ~/config/zshell/.oh-my-zsh/ ~/
+ln -s ~/config/zshell/.zshrc ~/

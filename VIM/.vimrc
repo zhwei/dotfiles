@@ -20,14 +20,14 @@ set t_Co=256
 
 "标点符号自动补全
 ""==============================================
-:inoremap ( ()<ESC>i
-:inoremap ) <c-r>=ClosePair(')')<CR>
-:inoremap { {}<ESC>i
-:inoremap } <c-r>=ClosePair('}')<CR>
-:inoremap [ []<ESC>i
-:inoremap ] <c-r>=ClosePair(']')<CR>
-:inoremap " ""<ESC>i
-:inoremap ' ''<ESC>i
+":inoremap ( ()<ESC>i
+":inoremap ) <c-r>=ClosePair(')')<CR>
+":inoremap { {}<ESC>i
+":inoremap } <c-r>=ClosePair('}')<CR>
+":inoremap [ []<ESC>i
+":inoremap ] <c-r>=ClosePair(']')<CR>
+":inoremap " ""<ESC>i
+":inoremap ' ''<ESC>i
 
 function! ClosePair(char)
  if getline('.')[col('.') - 1] == a:char
@@ -100,7 +100,8 @@ set softtabstop=4
 set shiftwidth=4
 
 filetype indent on
-autocmd FileType python setlocal et sta sw=4 sts=4
+autocmd FileType python,c setlocal et sta sw=4 sts=4
+autocmd FileType html,htmldjango,css,js,coffee,markdown setlocal et sta sw=2 sts=2
 
 set showmode
 set nocp
@@ -162,7 +163,7 @@ Bundle 'git://github.com/sontek/rope-vim.git'
 Bundle 'git://github.com/majutsushi/tagbar.git'
 Bundle 'git://github.com/kchmck/vim-coffee-script.git'
 Bundle 'git://github.com/Glench/Vim-Jinja2-Syntax.git'
-"Bundle 'Yggdroot/indentLine'  " 与vimwiki语法显示有冲突
+Bundle 'Yggdroot/indentLine'
 "================================================
 
 
@@ -175,6 +176,7 @@ Bundle 'git://github.com/Glench/Vim-Jinja2-Syntax.git'
 "snipMate
 ""snipmate_for_django
 map ,dj :set ft=python.django <cr>
+map ,md :set ft=markdown <cr>
 autocmd FileType html set ft=htmldjango.html " For SnipMate
 "map ,ja :set ft=htmldjango.html <cr>
 "
@@ -286,8 +288,7 @@ map <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
-		exec "!g++ % -o %<"
-		exec "! ./%<"
+		exec "!gcc % -o %<"
 	elseif &filetype == 'cpp'
 		exec "!g++ % -o %<"
 		exec "! ./%<"

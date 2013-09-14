@@ -111,10 +111,12 @@ alias ch='google-chrome'
 #export EDITOR="subl"
 #
 #git
-alias git ad='git add .'
 alias gitaa='git add . && git commit -a'
-#alias git ci = 'git commit  -a'
-#alias git p = 'git push'
+alias gitp='git push origin '
+
+# python simple web servser
+#
+alias py123="python -m SimpleHTTPServer 1234"
 
 
 #Colordiff
@@ -149,6 +151,9 @@ alias sshvps='ssh -qTfnN -D 7777 zhwei@173.252.197.142'
 #xiaonei
 alias xiaonei='ssh -qTfnN -D 7070 group@210.44.176.241 -p 80'
 
+#xiaonei3
+alias xiao3='ssh -qTfnN -D 7070 group@211.64.30.55 -p 22'
+
 #virtualenv
 alias ac_env="source env/bin/activate"
 
@@ -161,7 +166,8 @@ hash -d X="/etc/X11"
 hash -d Y="/home/zhwei/Yunio"
 hash -d W="/var/www"
 hash -d J="/home/zhwei/apps/jekyll_blog/"
-hash -d V="/home/zhwei/vmbox"
+hash -d V="/home/bak/vmbox"
+hash -d B="/home/bak"
 
 ##for Emacs在Emacs终端中使用Zsh的一些设置 不推荐在Emacs中使用它
 if [[ "$TERM" == "dumb" ]]; then
