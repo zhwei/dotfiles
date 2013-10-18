@@ -168,6 +168,7 @@ hash -d W="/var/www"
 hash -d J="/home/zhwei/apps/jekyll_blog/"
 hash -d V="/home/bak/vmbox"
 hash -d B="/home/bak"
+hash -d G="/home/bak/apps/gotit/"
 
 ##for Emacs在Emacs终端中使用Zsh的一些设置 不推荐在Emacs中使用它
 if [[ "$TERM" == "dumb" ]]; then
@@ -422,8 +423,8 @@ check-cmd-self-insert() { zle .self-insert && recolor-cmd }
  zle -N backward-delete-char check-cmd-backward-delete-char
 
 
- #go config
-#export GOROOT = $HOME/go
-#export GOARCH = 386
+#go config
+#export GOROOT = /usr/local/lib/go
+#export GOARCH = amd64
 #export GOOS = linux
-#export GOBIN = $HOME/go/bin 
+#export GOBIN = /usr/local/lib/go/bin 
