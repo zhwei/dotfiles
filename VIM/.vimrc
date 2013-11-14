@@ -80,7 +80,7 @@ set softtabstop=4
 set shiftwidth=4
 
 filetype indent on
-autocmd FileType python,c setlocal et sta sw=4 sts=4
+autocmd FileType python,c,sql setlocal et sta sw=4 sts=4
 autocmd FileType html,go,vim setlocal et sta sw=2 sts=2
 autocmd FileType html,htmldjango,css,js,coffee,markdown setlocal et sta sw=2 sts=2
 

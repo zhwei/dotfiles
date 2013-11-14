@@ -147,6 +147,7 @@ alias goagent='python2.7 /home/zhwei/Dropbox/tools/goagent/local/proxy.py'
 alias proxy_ssh='ssh -qTfnN -D 7070 89e18343a9774201a7dc87dfbead0a81@diy-zhwei.rhcloud.com'
 alias ssh_open='ssh ea99d068814f4787a8fe179724d58b0e@dytt-zhwei.rhcloud.com'
 alias sshvps='ssh -qTfnN -D 7777 zhwei@173.252.197.142'
+alias sshjp1='ssh -qTfnN -D 7777 zhwei@zhangweide.cn'
 
 #xiaonei
 alias xiaonei='ssh -qTfnN -D 7070 group@210.44.176.241 -p 80'
