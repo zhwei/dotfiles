@@ -1,0 +1,16 @@
+[user]
+	name = zhwei
+	email = sdutzhangwei@gmail.com
+[core]
+	editor = vim
+[alias]
+	ci = commit -a -v
+	co = checkcout
+	st = status
+	br = branch
+	throw = reset --hard HEAD
+	throwh = reset --hard HEAD^
+[color]
+	ui = true
+[push]
+	default = current
