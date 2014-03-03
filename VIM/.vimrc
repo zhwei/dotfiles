@@ -146,6 +146,7 @@ Bundle 'git://github.com/kchmck/vim-coffee-script.git'
 Bundle 'git://github.com/Glench/Vim-Jinja2-Syntax.git'
 Bundle 'Yggdroot/indentLine'
 Bundle 'go.vim'
+Bundle 'github.vim'
 "
 
 

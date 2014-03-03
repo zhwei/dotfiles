@@ -12,3 +12,4 @@ ln -s ~/config/VIM/.vim ~/
 ln -s ~/config/VIM/.vimrc ~/
 ln -s ~/config/zshell/.oh-my-zsh/ ~/
 ln -s ~/config/zshell/.zshrc ~/
+ln -s ~/config/gitconfig ~/.gitconfig
