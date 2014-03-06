@@ -12,4 +12,6 @@ ln -s ~/config/dotvim ~/.vim
 ln -s ~/config/vimrc ~/.vimrc
 ln -s ~/config/oh-my-zsh/ ~/.oh-my-zsh
 ln -s ~/config/zshrc ~/.zshrc
+ln -s ~/config/conky ~/.conky
+ln -s ~/config/conkyrc ~/.conkyrc
 ln -s ~/config/gitconfig ~/.gitconfig

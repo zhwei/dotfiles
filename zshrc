@@ -86,7 +86,6 @@ zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'
 #命令别名
 alias cp='cp -i'
 alias mv='mv -i'
-alias rm='rm -i'
 alias clpyc='rm *.pyc -rf'
 alias ls='ls -F --color=auto'
 alias ll='ls -la'
