@@ -5,7 +5,7 @@
 	editor = vim
 [alias]
 	ci = commit -a -v
-	co = checkcout
+	co = checkout
 	st = status
 	br = branch
 	throw = reset --hard HEAD

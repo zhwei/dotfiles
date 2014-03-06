@@ -8,8 +8,8 @@
 
 # SnipMate_for_django
 
-ln -s ~/config/VIM/.vim ~/
-ln -s ~/config/VIM/.vimrc ~/
-ln -s ~/config/zshell/.oh-my-zsh/ ~/
-ln -s ~/config/zshell/.zshrc ~/
+ln -s ~/config/dotvim ~/.vim
+ln -s ~/config/vimrc ~/.vimrc
+ln -s ~/config/oh-my-zsh/ ~/.oh-my-zsh
+ln -s ~/config/zshrc ~/.zshrc
 ln -s ~/config/gitconfig ~/.gitconfig
