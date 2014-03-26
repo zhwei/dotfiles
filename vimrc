@@ -81,7 +81,7 @@ set shiftwidth=4
 
 filetype indent on
 autocmd FileType python,c,sql setlocal et sta sw=4 sts=4
-autocmd FileType html,go,vim setlocal et sta sw=2 sts=2
+autocmd FileType html,go,vim,tex setlocal et sta sw=2 sts=2
 autocmd FileType html,htmldjango,css,js,coffee,markdown setlocal et sta sw=2 sts=2
 
 set showmode
@@ -146,7 +146,8 @@ Bundle 'git://github.com/kchmck/vim-coffee-script.git'
 Bundle 'git://github.com/Glench/Vim-Jinja2-Syntax.git'
 Bundle 'Yggdroot/indentLine'
 Bundle 'go.vim'
-Bundle 'github.vim'
+"Bundle 'github.vim'
+Bundle 'kchmck/vim-coffee-script'
 "
 
 
