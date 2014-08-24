@@ -119,7 +119,7 @@ alias py123="python -m SimpleHTTPServer 1234"
 
 
 #Colordiff
-#alias diff='colordiff'
+alias diff='colordiff'
 
 #deepin-screenshot
 alias deepin-scrot='cd /home/zhwei/apps/deepin-screenshot/src && ./screenshot.py'
@@ -144,6 +144,7 @@ alias goagent='python2.7 /home/zhwei/Dropbox/tools/goagent/local/proxy.py'
 
 # shadowsocks
 alias ssjp='sslocal -c /home/zhwei/apps/shadowsocks/config.json'
+alias spjp='/home/zhwei/apps/ShadowSPDY/bin/splocal'
 
 #ssh proxy #openshift
 alias proxy_ssh='ssh -qTfnN -D 7070 89e18343a9774201a7dc87dfbead0a81@diy-zhwei.rhcloud.com'
@@ -159,6 +160,7 @@ alias xiao3='ssh -qTfnN -D 7070 group@211.64.30.55 -p 22'
 
 #virtualenv
 alias ac_env="source env/bin/activate"
+alias ac_vir="source ~/config/virtualenv.sh"
 
 #路径别名 进入相应的路径时只要 cd ~xxx
 hash -d E="/etc/env.d"
@@ -425,9 +427,9 @@ check-cmd-self-insert() { zle .self-insert && recolor-cmd }
  zle -N self-insert check-cmd-self-insert
  zle -N backward-delete-char check-cmd-backward-delete-char
 
-
 #go config
 #export GOROOT = /usr/local/lib/go
 #export GOARCH = amd64
 #export GOOS = linux
 #export GOBIN = /usr/local/lib/go/bin 
+function gi() { curl http://www.gitignore.io/api/$@ ;}

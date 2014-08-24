@@ -80,9 +80,9 @@ set softtabstop=4
 set shiftwidth=4
 
 filetype indent on
-autocmd FileType python,c,sql setlocal et sta sw=4 sts=4
-autocmd FileType html,go,vim,tex setlocal et sta sw=2 sts=2
-autocmd FileType html,htmldjango,css,js,coffee,markdown setlocal et sta sw=2 sts=2
+autocmd FileType python,c,sql,scala setlocal et sta sw=4 sts=4
+autocmd FileType html,go,vim,tex,json setlocal et sta sw=2 sts=2
+autocmd FileType html,htmldjango,css,js,coffee,mkd,markdown setlocal et sta sw=2 sts=2
 
 set showmode
 set nocp
@@ -117,40 +117,38 @@ let &termencoding=&encoding
 "
 
 set nocompatible
-filetype on
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required! 
 
-Bundle 'gmarik/vundle'
-Bundle 'SuperTab'
-Bundle 'git://github.com/scrooloose/nerdtree.git'
-Bundle 'git://github.com/msanders/snipmate.vim.git'
-Bundle 'VimIM'
-Bundle 'git://github.com/scrooloose/nerdcommenter.git'
-Bundle 'git://github.com/mattn/zencoding-vim.git'
-Bundle 'git://github.com/kien/ctrlp.vim.git'
-Bundle 'git://github.com/vim-scripts/FuzzyFinder.git'
-Bundle 'git://github.com/vim-scripts/L9.git'
-Bundle 'git://github.com/sjl/gundo.vim.git'
-Bundle 'git://github.com/mitechie/pyflakes-pathogen.git'
-Bundle 'git://github.com/alfredodeza/pytest.vim.git'
-Bundle 'git://github.com/vim-scripts/pep8.git'
-Bundle 'git://github.com/fs111/pydoc.vim.git'
-Bundle 'git://github.com/kevinw/pyflakes-vim.git'
-Bundle 'git://github.com/sontek/rope-vim.git'
-Bundle 'git://github.com/majutsushi/tagbar.git'
-Bundle 'git://github.com/kchmck/vim-coffee-script.git'
-Bundle 'git://github.com/Glench/Vim-Jinja2-Syntax.git'
-Bundle 'Yggdroot/indentLine'
-Bundle 'go.vim'
-"Bundle 'github.vim'
-Bundle 'kchmck/vim-coffee-script'
-"
+Plugin 'gmarik/vundle'
+Plugin 'SuperTab'
+Plugin 'git://github.com/scrooloose/nerdtree.git'
+Plugin 'git://github.com/msanders/snipmate.vim.git'
+Plugin 'git://github.com/scrooloose/nerdcommenter.git'
+Plugin 'git://github.com/mattn/zencoding-vim.git'
+Plugin 'git://github.com/kien/ctrlp.vim.git'
+Plugin 'git://github.com/vim-scripts/FuzzyFinder.git'
+Plugin 'git://github.com/vim-scripts/L9.git'
+Plugin 'git://github.com/sjl/gundo.vim.git'
+Plugin 'git://github.com/mitechie/pyflakes-pathogen.git'
+Plugin 'git://github.com/alfredodeza/pytest.vim.git'
+Plugin 'git://github.com/vim-scripts/pep8.git'
+Plugin 'git://github.com/fs111/pydoc.vim.git'
+Plugin 'git://github.com/kevinw/pyflakes-vim.git'
+Plugin 'git://github.com/majutsushi/tagbar.git'
+Plugin 'git://github.com/Glench/Vim-Jinja2-Syntax.git'
+Plugin 'Yggdroot/indentLine'
+Plugin 'go.vim'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'derekwyatt/vim-scala'
 
-
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 
 "plugin setting
@@ -274,6 +272,8 @@ func! CompileRunGcc()
     exec "!google-chrome % &"
   elseif &filetype == 'go'
     exec "!go run % &"
+  elseif &filetype == 'scala'
+    exec "!scala %"
   elseif &filetype == 'mkd'
     "        exec "!touch ~/temp.html"
     "        exec "!perl ~/.vim/markdown.pl % > /tmp/temp.html<"<CR>
@@ -289,3 +289,8 @@ endfunc
 " go.vim
 "
 au BufRead,BufNewFile *.go set filetype=go
+
+
+" vim.markdown
+"
+au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=mkd
