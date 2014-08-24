@@ -99,7 +99,6 @@ alias vi='vim'
 alias la="ls -a"
 alias cl="clear"
 alias wi='whoami'
-alias et='exit'
 
 #webbrowsers
 alias f='firefox'
@@ -120,7 +119,7 @@ alias py123="python -m SimpleHTTPServer 1234"
 
 
 #Colordiff
-alias diff='colordiff'
+#alias diff='colordiff'
 
 #deepin-screenshot
 alias deepin-scrot='cd /home/zhwei/apps/deepin-screenshot/src && ./screenshot.py'
