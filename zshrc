@@ -124,20 +124,16 @@ alias diff='colordiff'
 #deepin-screenshot
 alias deepin-scrot='cd /home/zhwei/apps/deepin-screenshot/src && ./screenshot.py'
 
-#xunlei-lixian
-alias lx='python2.7 /home/zhwei/apps/xunlei-lixian/lixian_cli.py'
-alias lxl='python2.7 /home/zhwei/apps/xunlei-lixian/lixian_cli.py list -n'
-alias lxd='python2.7 /home/zhwei/apps/xunlei-lixian/lixian_cli.py download'
-#baidu music downloader
-alias bmd='python2.7 /home/zhwei/apps/baidu_music/getBaiduMusic.py -d ~/Music'
-
 # ranger
 alias r='ranger'
 
 ##python
-   alias py='python'
-   alias ipy='ipython2.7'
-   alias bpy='bpython'
+alias py='python'
+alias ipy='ipython2.7'
+alias bpy='bpython'
+
+##tmux
+alias tma='tmux a -t'
 
 #goagent start
 alias goagent='python2.7 /home/zhwei/Dropbox/tools/goagent/local/proxy.py'
@@ -145,18 +141,6 @@ alias goagent='python2.7 /home/zhwei/Dropbox/tools/goagent/local/proxy.py'
 # shadowsocks
 alias ssjp='sslocal -c /home/zhwei/apps/shadowsocks/config.json'
 alias spjp='/home/zhwei/apps/ShadowSPDY/bin/splocal'
-
-#ssh proxy #openshift
-alias proxy_ssh='ssh -qTfnN -D 7070 89e18343a9774201a7dc87dfbead0a81@diy-zhwei.rhcloud.com'
-alias ssh_open='ssh ea99d068814f4787a8fe179724d58b0e@dytt-zhwei.rhcloud.com'
-alias sshvps='ssh -qTfnN -D 7777 zhwei@173.252.197.142'
-alias sshjp1='ssh -qTfnN -D 7777 zhwei@zhangweide.cn'
-
-#xiaonei
-alias xiaonei='ssh -qTfnN -D 7070 group@210.44.176.241 -p 80'
-
-#xiaonei3
-alias xiao3='ssh -qTfnN -D 7070 group@211.64.30.55 -p 22'
 
 #virtualenv
 alias ac_env="source env/bin/activate"
@@ -188,36 +172,36 @@ fi
 #ibus
 
 
- export GTK_IM_MODULE=ibus
- export XMODIFIERS=@im=ibus
-   export QT_IM_MODULE=ibus
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
 
 
 #效果超炫的提示符，如需要禁用，注释下面配置   
 function precmd {
-    
+
     local TERMWIDTH
     (( TERMWIDTH = ${COLUMNS} - 1 ))
 
-    
+
     ###
     # Truncate the path if it's too long.
-    
+
     PR_FILLBAR=""
     PR_PWDLEN=""
-    
+
     local promptsize=${#${(%):---(%n@%m:%l)---()--}}
     local pwdsize=${#${(%):-%~}}
-    
+
     if [[ "$promptsize + $pwdsize" -gt $TERMWIDTH ]]; then
     ((PR_PWDLEN=$TERMWIDTH - $promptsize))
     else
     PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $pwdsize)))..${PR_HBAR}.)}"
     fi
-    
+
     ###
     # Get APM info.
-    
+
     #if which ibam > /dev/null; then
     #PR_APM_RESULT=`ibam --percentbattery`
     #elif which apm > /dev/null; then
@@ -239,7 +223,7 @@ setprompt () {
     # Need this so the prompt will work.
 
     setopt prompt_subst
-    
+
 
     ###
     # See if we can use colors.
@@ -254,11 +238,11 @@ setprompt () {
     (( count = $count + 1 ))
     done
     PR_NO_COLOUR="%{$terminfo[sgr0]%}"
-    
-    
+
+
     ###
     # See if we can use extended characters to look nicer.
-    
+
     typeset -A altchar
     set -A altchar ${(s..)terminfo[acsc]}
     PR_SET_CHARSET="%{$terminfo[enacs]%}"
@@ -270,11 +254,11 @@ setprompt () {
     PR_LLCORNER=${altchar[m]:--}
     PR_LRCORNER=${altchar[j]:--}
     PR_URCORNER=${altchar[k]:--}
-    
-    
+
+
     ###
     # Decide if we need to set titlebar text.
-    
+
     case $TERM in
     xterm*)
         PR_TITLEBAR=$'%{\e]0;%(!.-=*[ROOT]*=- | .)%n@%m:%~ | ${COLUMNS}x${LINES} | %y\a%}'

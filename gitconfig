@@ -1,12 +1,13 @@
 [user]
   name = zhwei
-  email = sdutzhangwei@gmail.com
   username = zhwei
+  email = sdutzhangwei@gmail.com
 [core]
   editor = vim
 [alias]
   ci = commit -a -v
   co = checkout
+  po = pull origin
   st = status
   br = branch
   throw = reset --hard HEAD
