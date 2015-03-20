@@ -15,3 +15,4 @@ ln -s ~/dotfiles/zshrc ~/.zshrc
 ln -s ~/dotfiles/conky ~/.conky
 ln -s ~/dotfiles/conkyrc ~/.conkyrc
 ln -s ~/dotfiles/gitconfig ~/.gitconfig
+ln -s ~/dotfiles/tmux.conf ~/.tmux.conf

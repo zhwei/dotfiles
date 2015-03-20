@@ -80,7 +80,7 @@ set softtabstop=4
 set shiftwidth=4
 
 filetype indent on
-autocmd FileType python,c,sql,scala setlocal et sta sw=4 sts=4
+autocmd FileType python,c,sql,scala,rs setlocal et sta sw=4 sts=4
 autocmd FileType html,go,vim,tex,json setlocal et sta sw=2 sts=2
 autocmd FileType html,htmldjango,css,js,coffee,mkd,markdown setlocal et sta sw=2 sts=2
 
@@ -136,7 +136,7 @@ Plugin 'git://github.com/vim-scripts/L9.git'
 Plugin 'git://github.com/sjl/gundo.vim.git'
 Plugin 'git://github.com/mitechie/pyflakes-pathogen.git'
 Plugin 'git://github.com/alfredodeza/pytest.vim.git'
-Plugin 'git://github.com/vim-scripts/pep8.git'
+" Plugin 'git://github.com/vim-scripts/pep8.git'
 Plugin 'git://github.com/fs111/pydoc.vim.git'
 Plugin 'git://github.com/kevinw/pyflakes-vim.git'
 Plugin 'git://github.com/majutsushi/tagbar.git'
@@ -146,6 +146,8 @@ Plugin 'go.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'derekwyatt/vim-scala'
+Plugin 'wting/rust.vim'
+Plugin 'tmatilai/vim-monit'
 
 call vundle#end()            " required
 filetype plugin indent on    " required

@@ -122,15 +122,16 @@ alias py123="python -m SimpleHTTPServer 1234"
 alias diff='colordiff'
 
 #deepin-screenshot
-alias deepin-scrot='cd /home/zhwei/apps/deepin-screenshot/src && ./screenshot.py'
+# alias deepin-scrot='cd /home/zhwei/apps/deepin-screenshot/src && ./screenshot.py'
 
 # ranger
 alias r='ranger'
 
 ##python
-alias py='python'
+alias py='python3'
 alias ipy='ipython2.7'
 alias bpy='bpython'
+alias ipynotebook='ipython3 notebook --port=7777 --notebook-dir=~/Dropbox/code/iPython_Notebook'
 
 ##tmux
 alias tma='tmux a -t'
@@ -139,25 +140,20 @@ alias tma='tmux a -t'
 alias goagent='python2.7 /home/zhwei/Dropbox/tools/goagent/local/proxy.py'
 
 # shadowsocks
-alias ssjp='sslocal -c /home/zhwei/apps/shadowsocks/config.json'
+alias ssjp='sslocal -c /home/zhwei/Dropbox/configs/shadowsocks/config.json'
 alias spjp='/home/zhwei/apps/ShadowSPDY/bin/splocal'
 
 #virtualenv
 alias ac_env="source env/bin/activate"
 alias ac_vir="source ~/config/virtualenv.sh"
 
+# openvpn
+alias vpn_uc="cd ~/Dropbox/configs/baixing/openvpn && sudo openvpn ucloud-bb8-dc1ad.ovpn"
+alias vpn_qing="cd ~/Dropbox/configs/baixing/openvpn/pupils.tblk && sudo openvpn pupils.ovpn"
+
 #路径别名 进入相应的路径时只要 cd ~xxx
-hash -d E="/etc/env.d"
-hash -d C="/etc/conf.d"
 hash -d D="/home/zhwei/Dropbox"
-hash -d I="/etc/rc.d"
-hash -d X="/etc/X11"
-hash -d Y="/home/zhwei/Yunio"
-hash -d W="/var/www"
-hash -d J="/home/zhwei/apps/jekyll_blog/"
-hash -d V="/home/bak/vmbox"
-hash -d B="/home/bak"
-hash -d G="/home/bak/apps/gotit/"
+
 
 ##for Emacs在Emacs终端中使用Zsh的一些设置 不推荐在Emacs中使用它
 if [[ "$TERM" == "dumb" ]]; then
