@@ -39,12 +39,12 @@ set shortmess=atI
 set report=0
 setlocal noswapfile
 
-" 下面两条配置使得tab显示为 ^I ,行尾空格显示为+
+" 下面两条配置使得tab显示为 >--- ,行尾空格显示为+
 set list
 set listchars=trail:+
-
-" 自动加载文件
-set autoread
+set listchars=tab:>-
+" set listchars=eol:$  "行尾字符
+set autoread " 自动加载文件
 set showmatch
 set matchtime=5
 set hlsearch
@@ -69,7 +69,7 @@ set shiftwidth=4
 filetype indent on
 autocmd FileType python,c,sql,scala,rs setlocal et sta sw=4 sts=4
 autocmd FileType html,go,vim,tex,json setlocal et sta sw=2 sts=2
-autocmd FileType html,htmldjango,css,js,coffee,mkd,markdown setlocal et sta sw=2 sts=2
+autocmd FileType html,htmldjango,css,js,coffee setlocal et sta sw=2 sts=2
 
 set showmode
 set nocp
