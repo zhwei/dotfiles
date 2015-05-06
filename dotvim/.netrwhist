@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/etc/rc.d'
 let g:netrw_dirhist_2='/boot'
 let g:netrw_dirhist_3='/boot/grub'
+let g:netrw_dirhist_4='/Users/zhwei/baixing/ClassifiedSearch'
+let g:netrw_dirhist_5='/Users/zhwei/baixing/fabez/projects/syslog/ucloud'

@@ -1,7 +1,7 @@
 [user]
   name = zhwei
   username = zhwei
-  email = sdutzhangwei@gmail.com
+	email = zhangwei7@baixing.com
 [core]
   editor = vim
 [alias]
@@ -16,3 +16,7 @@
   ui = true
 [push]
   default = current
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
