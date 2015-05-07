@@ -120,6 +120,8 @@ Plugin 'scrooloose/nerdtree.git'
 "Plugin 'msanders/snipmate.vim.git'
 Plugin 'scrooloose/nerdcommenter.git' " 注释插件
 Plugin 'davidhalter/jedi-vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
 "Plugin 'git://github.com/vim-scripts/L9.git'
 "Plugin 'git://github.com/majutsushi/tagbar.git'
@@ -201,12 +203,11 @@ vmap <C-_> <leader>c<Space>
 
 "SuperTab
 "
-"set ofu=syntaxcomplete#Complete
-"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+set ofu=syntaxcomplete#Complete
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 let g:SuperTabDefaultCompletionType = "<c-x><c-n>"
 
