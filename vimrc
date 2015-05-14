@@ -1,5 +1,5 @@
 "
-"zhwei
+"Author: zhwei
 "
 
 syntax on
@@ -12,9 +12,12 @@ set cinoptions+={2
 set autoindent shiftwidth=3
 set background=dark
 colorscheme molokai
+let g:molokai_original = 1
+let g:rehash256 = 1
 
 "解决konsole 256 色显示问题
 set t_Co=256
+set t_ZH=[3m
 let g:solarized_termcolors=256
 
 "
@@ -125,6 +128,10 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'Shougo/neocomplete.vim'
+Plugin 'alfredodeza/pytest.vim'
+Plugin 'bling/vim-airline'
+Plugin 'majutsushi/tagbar'
+Plugin 'nvie/vim-flake8'
 
 "Plugin 'git://github.com/vim-scripts/L9.git'
 "Plugin 'git://github.com/majutsushi/tagbar.git'
@@ -215,7 +222,16 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 let g:SuperTabDefaultCompletionType = "<c-x><c-n>"
 
+"airline
+"
+let g:airline_theme='molokai'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
+"
+" Tarbar
+nmap <F8> :TagbarToggle<CR>
 
 "neocomplete
 "
@@ -229,14 +245,14 @@ let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-    \ }
+      \ 'default' : '',
+      \ 'vimshell' : $HOME.'/.vimshell_hist',
+      \ 'scheme' : $HOME.'/.gosh_completions'
+      \ }
 
 " Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
+  let g:neocomplete#keyword_patterns = {}
 endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
@@ -248,9 +264,9 @@ inoremap <expr><C-l>     neocomplete#complete_common_string()
 "
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    "use silent mode to avoid bizzare char insertion"
+"use silent mode to avoid bizzare char insertion"
 function! s:my_cr_function()
-    return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 
 " <TAB>: completion.
@@ -278,3 +294,20 @@ let g:jedi#auto_vim_configuration = 1
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
+
+
+"
+"Yapf, a formatter for python
+map <C-Y> :call yapf#YAPF()<cr>
+imap <C-Y> <c-o>:call yapf#YAPF()<cr>
+
+"
+"Flake8
+autocmd BufWritePost *.py call Flake8()
+
+"
+"PyTest
+" Pytest
+nmap <Leader>pf :Pytest file verbose<CR>
+nmap <Leader>pc :Pytest class verbose<CR>
+nmap <Leader>pm :Pytest method verbose<CR>

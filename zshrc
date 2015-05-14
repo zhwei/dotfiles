@@ -151,6 +151,9 @@ alias ac_vir="source ~/config/virtualenv.sh"
 alias vpn_uc="cd ~/Dropbox/configs/baixing/openvpn && sudo openvpn ucloud-bb8-dc1ad.ovpn"
 alias vpn_qing="cd ~/Dropbox/configs/baixing/openvpn/pupils.tblk && sudo openvpn pupils.ovpn"
 
+# Sync to Haojing
+alias sync_haojing="rsync -rv /Users/zhwei/baixing/haojing zhangwei7@192.168.2.2:/home/data/zhangwei7"
+
 #路径别名 进入相应的路径时只要 cd ~xxx
 hash -d D="/home/zhwei/Dropbox"
 
