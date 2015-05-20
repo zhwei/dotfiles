@@ -34,6 +34,7 @@ map ,pa :setlocal paste! <cr>
 "
 "常见设置
 set nu
+set cul " 高亮当前行
 set numberwidth=1
 set background=dark
 set nocompatible
@@ -131,13 +132,56 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'alfredodeza/pytest.vim'
 Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
-Plugin 'nvie/vim-flake8'
+"Plugin 'nvie/vim-flake8'
 
 "Plugin 'git://github.com/vim-scripts/L9.git'
 "Plugin 'git://github.com/majutsushi/tagbar.git'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+"""""""""""""""""""""""""""
+" some function
+"""""""""""""""""""""""""""
+
+"
+"new python file add encodings config
+autocmd BufNewFile *.py, exec ":call SetTitle()" 
+func SetTitle() 
+  if &filetype == 'python'
+    call setline(1,"#!/usr/bin/env python")
+    call append(line("."),"# -*- coding: utf-8 -*-")
+    call append(line(".")+1,"# Created by zhangwei7@baixing.com on ".strftime('%Y-%m-%d %H:%M:%S'))
+  endif
+  autocmd BufNewFile * normal G
+endfunc
+
+"
+" Run file
+map <F5> :call CompileRunGcc()<CR>
+func! CompileRunGcc()
+  exec "w"
+  if &filetype == 'c'
+    exec "!g++ % -o %<"
+    exec "!time ./%<"
+  elseif &filetype == 'cpp'
+    exec "!g++ % -o %<"
+    exec "!time ./%<"
+  elseif &filetype == 'java' 
+    exec "!javac %" 
+    exec "!time java %<"
+  elseif &filetype == 'sh'
+    :!time bash %
+  elseif &filetype == 'python'
+    exec "!export PYTHONPATH=`pwd` && time python3 %"
+    elseif &filetype == 'html'
+        exec "!firefox % &"
+    elseif &filetype == 'go'
+        " exec "!go build %<"
+        exec "!time go run %"
+  endif
+endfunc
+
 
 
 """""""""""""""""""""""""""""
@@ -147,48 +191,9 @@ filetype plugin indent on    " required
 
 ""NERDTree plugin
 "
-let NERDTreeWinPos = "left" "where NERD tree window is placed on the screen
 nmap <F7> <ESC>:NERDTreeToggle<RETURN>" Open and close the NERD_tree.vim separately
-
-
-"
-"autopep8
-"
-" map <F9> :call FormartSrc()<CR>
-"
-""定义FormartSrc()
-" func FormartSrc()
-"   exec "w"
-"   if &filetype == 'c'
-"     exec "!astyle --style=ansi --one-line=keep-statements -a --suffix=none %"
-"   elseif &filetype == 'cpp' || &filetype == 'hpp'
-"     exec "r !astyle --style=ansi --one-line=keep-statements -a --suffix=none %> /dev/null 2>&1"
-"   elseif &filetype == 'perl'
-"     exec "!astyle --style=gnu --suffix=none %"
-"   elseif &filetype == 'py'||&filetype == 'python'
-"     exec "r !autopep8 -i --aggressive %"
-"   elseif &filetype == 'java'
-"     exec "!astyle --style=java --suffix=none %"
-"   elseif &filetype == 'jsp'
-"     exec "!astyle --style=gnu --suffix=none %"
-"   elseif &filetype == 'xml'
-"     exec "!astyle --style=gnu --suffix=none %"
-"   endif
-"   exec "e! %"
-" endfunc
-"结束定义FormartSrc
-
-
-"new python file add encodings config
-autocmd BufNewFile *.py, exec ":call SetTitle()" 
-func SetTitle() 
-  if &filetype == 'python'
-    call setline(1,"#!/usr/bin/env python")
-    call append(line("."),"# -*- coding: utf-8 -*-")
-  endif
-  autocmd BufNewFile * normal G
-endfunc
-
+let NERDTreeWinPos = "left" "where NERD tree window is placed on the screen
+let NERDTreeIgnore=['^__pycache__$', ]
 
 " go.vim
 "
@@ -303,7 +308,7 @@ imap <C-Y> <c-o>:call yapf#YAPF()<cr>
 
 "
 "Flake8
-autocmd BufWritePost *.py call Flake8()
+"autocmd BufWritePost *.py call Flake8()
 
 "
 "PyTest
@@ -311,3 +316,8 @@ autocmd BufWritePost *.py call Flake8()
 nmap <Leader>pf :Pytest file verbose<CR>
 nmap <Leader>pc :Pytest class verbose<CR>
 nmap <Leader>pm :Pytest method verbose<CR>
+
+"
+"CtrlP
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*/node_modules/*     " MacOSX/Linux
