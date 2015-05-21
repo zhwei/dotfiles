@@ -29,7 +29,9 @@ map <c-h> <c-w>h
 let mapleader = ","  " 映射leader键为逗号
 inoremap jj <ESC>
 map ,pa :setlocal paste! <cr>
-
+" switch between buffer or tab
+nmap <TAB> :bn <cr>
+nmap <S-TAB> :bp <cr>
 
 "
 "常见设置
@@ -132,10 +134,8 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'alfredodeza/pytest.vim'
 Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
-"Plugin 'nvie/vim-flake8'
+Plugin 'scrooloose/syntastic'
 
-"Plugin 'git://github.com/vim-scripts/L9.git'
-"Plugin 'git://github.com/majutsushi/tagbar.git'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -149,9 +149,9 @@ filetype plugin indent on    " required
 autocmd BufNewFile *.py, exec ":call SetTitle()" 
 func SetTitle() 
   if &filetype == 'python'
-    call setline(1,"#!/usr/bin/env python")
-    call append(line("."),"# -*- coding: utf-8 -*-")
-    call append(line(".")+1,"# Created by zhangwei7@baixing.com on ".strftime('%Y-%m-%d %H:%M:%S'))
+    call setline(1,"# -*- coding: utf-8 -*-")
+    call setline(2,"# Created by zhangwei7@baixing.com on ".strftime('%Y-%m-%d %H:%M:%S'))
+    exec "2"
   endif
   autocmd BufNewFile * normal G
 endfunc
@@ -212,8 +212,8 @@ map <leader>g :GundoToggle<CR>
 
 "NerdCommenter
 "
-nmap <C-_> <leader>c<Space>
-vmap <C-_> <leader>c<Space>
+map <C-_> <leader>c<Space>j
+"map <C-_> <leader>c<Space>j
 
 
 "SuperTab
@@ -230,9 +230,9 @@ let g:SuperTabDefaultCompletionType = "<c-x><c-n>"
 "airline
 "
 let g:airline_theme='molokai'
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+
 
 "
 " Tarbar
@@ -319,5 +319,16 @@ nmap <Leader>pm :Pytest method verbose<CR>
 
 "
 "CtrlP
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*/node_modules/*
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*/node_modules/*     " MacOSX/Linux
+"
+"Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+" 只报errors
+let g:syntastic_quiet_messages = {"!level":  "errors"}
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['pylint']
