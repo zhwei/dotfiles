@@ -83,7 +83,7 @@ set showmode
 "
 " tab size
 autocmd FileType python,c,sql,scala,rs setlocal et sta sw=4 sts=4
-autocmd FileType html,go,vim,tex,json setlocal et sta sw=2 sts=2
+autocmd FileType html,vim,tex,json setlocal et sta sw=2 sts=2
 autocmd FileType html,htmldjango,css,js,coffee setlocal et sta sw=2 sts=2
 
 
@@ -114,6 +114,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'go.vim'
 Plugin 'wting/rust.vim'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'suan/vim-instant-markdown'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'sjl/gundo.vim'
 Plugin 'hynek/vim-python-pep8-indent'
@@ -134,7 +135,9 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'alfredodeza/pytest.vim'
 Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/syntastic'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'HerringtonDarkholme/jedi-syntax'
+"Plugin 'scrooloose/syntastic'
 
 
 call vundle#end()            " required
@@ -221,9 +224,9 @@ map <C-_> <leader>c<Space>j
 set ofu=syntaxcomplete#Complete
 set omnifunc=syntaxcomplete#Complete
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html setlocal omnifunc=emmet:emmet-expand-abbr
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 let g:SuperTabDefaultCompletionType = "<c-x><c-n>"
 
@@ -323,12 +326,12 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*/node_modules/*
 
 "
 "Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 " 只报errors
-let g:syntastic_quiet_messages = {"!level":  "errors"}
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['pylint']
+"let g:syntastic_quiet_messages = {"!level":  "errors"}
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_python_checkers = ['pylint']

@@ -147,12 +147,8 @@ alias spjp='/home/zhwei/apps/ShadowSPDY/bin/splocal'
 alias ac_env="source env/bin/activate"
 alias ac_vir="source ~/config/virtualenv.sh"
 
-# openvpn
-alias vpn_uc="cd ~/Dropbox/configs/baixing/openvpn && sudo openvpn ucloud-bb8-dc1ad.ovpn"
-alias vpn_qing="cd ~/Dropbox/configs/baixing/openvpn/pupils.tblk && sudo openvpn pupils.ovpn"
-
 # Sync to Haojing
-alias sync_haojing="rsync -rv /Users/zhwei/baixing/haojing zhangwei7@192.168.2.2:/home/data/zhangwei7"
+# alias sync_haojing="rsync -rv --exclude=haojing/htdocs/config/env.php --exclude=.git/ ~/baixing/haojing zhangwei7@192.168.2.2:~/"
 
 #路径别名 进入相应的路径时只要 cd ~xxx
 hash -d D="/home/zhwei/Dropbox"
@@ -169,8 +165,6 @@ fi
 
 
 #ibus
-
-
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
@@ -415,4 +409,13 @@ check-cmd-self-insert() { zle .self-insert && recolor-cmd }
 #export GOARCH = amd64
 #export GOOS = linux
 #export GOBIN = /usr/local/lib/go/bin 
-function gi() { curl http://www.gitignore.io/api/$@ ;}
+
+# Git flow
+gitFetchAndMerge() {
+    git fetch $1
+    git merge $1/master
+}
+alias merge=gitFetchAndMerge
+
+# For PHP
+alias rebuild='composer dumpautoload; php artisan clear-compiled; php artisan ide-helper:generate -M; php artisan optimize;'
