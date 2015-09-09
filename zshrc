@@ -7,8 +7,6 @@
 export GTK_IM_MODULE=xim
 export QT_IM_MODULE=xim
 
-
-
 #关于历史纪录的配置
 # number of lines kept in history
 export HISTSIZE=10000
@@ -104,14 +102,6 @@ alias wi='whoami'
 alias f='firefox'
 alias ch='google-chrome'
 
-#sublime
-#alias subl="'/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl'"
-#alias nano="subl"
-#export EDITOR="subl"
-#
-#git
-alias gitaa='git add . && git commit -a'
-alias gitp='git push origin '
 
 # python simple web servser
 #
@@ -416,6 +406,8 @@ gitFetchAndMerge() {
     git merge $1/master
 }
 alias merge=gitFetchAndMerge
+alias gitp='git push origin '
+alias gitaa='git add . && git commit -a'
 
 # For PHP
 alias rebuild='composer dumpautoload; php artisan clear-compiled; php artisan ide-helper:generate -M; php artisan optimize;'
