@@ -1,5 +1,5 @@
 [submodule "Vundle.vim"]
-	path = dotvim/bundle/Vundle.vim
+	path = vim/bundle/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
