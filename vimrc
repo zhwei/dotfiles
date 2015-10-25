@@ -322,7 +322,7 @@ nmap <Leader>pm :Pytest method verbose<CR>
 
 "
 "CtrlP
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*/node_modules/*
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*/node_modules/*,*.jpg,*.png
 
 "
 "Syntastic
