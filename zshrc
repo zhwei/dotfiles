@@ -98,21 +98,8 @@ alias la="ls -a"
 alias cl="clear"
 alias wi='whoami'
 
-#webbrowsers
-alias f='firefox'
-alias ch='google-chrome'
-
-
-# python simple web servser
-#
-alias py123="python -m SimpleHTTPServer 1234"
-
-
 #Colordiff
 alias diff='colordiff'
-
-#deepin-screenshot
-# alias deepin-scrot='cd /home/zhwei/apps/deepin-screenshot/src && ./screenshot.py'
 
 # ranger
 alias r='ranger'
@@ -121,44 +108,10 @@ alias r='ranger'
 alias py='python3'
 alias ipy='ipython2.7'
 alias bpy='bpython'
-alias ipynotebook='ipython3 notebook --port=7777 --notebook-dir=~/Dropbox/code/iPython_Notebook'
-
-##tmux
-alias tma='tmux a -t'
-
-#goagent start
-alias goagent='python2.7 /home/zhwei/Dropbox/tools/goagent/local/proxy.py'
-
-# shadowsocks
-alias ssjp='sslocal -c /home/zhwei/Dropbox/configs/shadowsocks/config.json'
-alias spjp='/home/zhwei/apps/ShadowSPDY/bin/splocal'
 
 #virtualenv
 alias ac_env="source env/bin/activate"
 alias ac_vir="source ~/config/virtualenv.sh"
-
-# Sync to Haojing
-# alias sync_haojing="rsync -rv --exclude=haojing/htdocs/config/env.php --exclude=.git/ ~/baixing/haojing zhangwei7@192.168.2.2:~/"
-
-#路径别名 进入相应的路径时只要 cd ~xxx
-hash -d D="/home/zhwei/Dropbox"
-
-
-##for Emacs在Emacs终端中使用Zsh的一些设置 不推荐在Emacs中使用它
-if [[ "$TERM" == "dumb" ]]; then
-setopt No_zle
-PROMPT='%n@%M %/
->>'
-alias ls='ls -F'
-fi 
-
-
-
-#ibus
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
-
 
 #效果超炫的提示符，如需要禁用，注释下面配置   
 function precmd {
@@ -253,8 +206,8 @@ setprompt () {
         PR_TITLEBAR=''
         ;;
     esac
-    
-    
+
+
     ###
     # Decide whether to set a screen title
     if [[ "$TERM" == "screen" ]]; then
@@ -262,11 +215,11 @@ setprompt () {
     else
     PR_STITLE=''
     fi
-    
-    
+
+
     ###
     # APM detection
-    
+
     #if which ibam > /dev/null; then
     #PR_APM='$PR_RED${${PR_APM_RESULT[(f)1]}[(w)-2]}%%(${${PR_APM_RESULT[(f)3]}[(w)-1]})$PR_LIGHT_BLUE:'
     #elif which apm > /dev/null; then
@@ -274,11 +227,11 @@ setprompt () {
     #else
     PR_APM=''
     #fi
-    
-    
+
+
     ###
     # Finally, the prompt.
-    
+
     PROMPT='$PR_SET_CHARSET$PR_STITLE${(e)PR_TITLEBAR}\
 $PR_CYAN$PR_SHIFT_IN$PR_ULCORNER$PR_BLUE$PR_HBAR$PR_SHIFT_OUT(\
 $PR_GREEN%(!.%SROOT%s.%n)$PR_GREEN@%m:%l\
@@ -292,10 +245,10 @@ ${(e)PR_APM}$PR_YELLOW%D{%H:%M}\
 $PR_LIGHT_BLUE:%(!.$PR_RED.$PR_WHITE)%#$PR_BLUE)$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
 $PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
 $PR_NO_COLOUR '
-    
+
     RPROMPT=' $PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_BLUE$PR_HBAR$PR_SHIFT_OUT\
 ($PR_YELLOW%D{%a,%b%d}$PR_BLUE)$PR_SHIFT_IN$PR_HBAR$PR_CYAN$PR_LRCORNER$PR_SHIFT_OUT$PR_NO_COLOUR'
-    
+
     PS2='$PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
 $PR_BLUE$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT(\
 $PR_LIGHT_GREEN%_$PR_BLUE)$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
@@ -334,15 +287,11 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git django laravel5)
+plugins=(git django laravel5 osx)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
 
 #命令粗体
 #color{{{
@@ -358,11 +307,10 @@ FINISH="%{$terminfo[sgr0]%}"
 #}}}
 
 
- 
 #漂亮又实用的命令高亮界面
 setopt extended_glob
  TOKENS_FOLLOWED_BY_COMMANDS=('|' '||' ';' '&' '&&' 'sudo' 'do' 'time' 'strace')
- 
+
  recolor-cmd() {
      region_highlight=()
      colorize=true
@@ -389,10 +337,10 @@ setopt extended_glob
      done
  }
 check-cmd-self-insert() { zle .self-insert && recolor-cmd }
- check-cmd-backward-delete-char() { zle .backward-delete-char && recolor-cmd }
- 
- zle -N self-insert check-cmd-self-insert
- zle -N backward-delete-char check-cmd-backward-delete-char
+check-cmd-backward-delete-char() { zle .backward-delete-char && recolor-cmd }
+
+zle -N self-insert check-cmd-self-insert
+zle -N backward-delete-char check-cmd-backward-delete-char
 
 #go config
 #export GOROOT = /usr/local/lib/go
