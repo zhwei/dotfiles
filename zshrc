@@ -216,14 +216,7 @@ setprompt () {
     ###
     # APM detection
 
-    #if which ibam > /dev/null; then
-    #PR_APM='$PR_RED${${PR_APM_RESULT[(f)1]}[(w)-2]}%%(${${PR_APM_RESULT[(f)3]}[(w)-1]})$PR_LIGHT_BLUE:'
-    #elif which apm > /dev/null; then
-    #PR_APM='$PR_RED${PR_APM_RESULT[(w)5,(w)6]/\% /%%}$PR_LIGHT_BLUE:'
-    #else
     PR_APM=''
-    #fi
-
 
     ###
     # Finally, the prompt.
@@ -289,7 +282,6 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 
 #命令粗体
-#color{{{
 autoload colors
 colors
  
