@@ -348,16 +348,16 @@ alias gitaa='git add . && git commit -a'
 eval "$(hub alias -s)"
 
 # For PHP
-alias rebuild='composer dumpautoload; php artisan clear-compiled; php artisan ide-helper:generate -M; php artisan optimize;'
+alias rebuild='composer dumpautoload; php artisan clear-compiled; php artisan ide-helper:generate -M; php artisan ide-helper:models -n; php artisan optimize;'
 
 # 自动重连ssh端口转发
-connectXXProxy() {
+sshPortForward() {
     while true
     do
         echo 'Connecting ...';
-        ssh -N -D 7070 daisy@xx.proxy
+        ssh -N -D $1 $2
         sleep 1
         echo 'connect lost, retrying ...';
     done
 }
-alias xxproxy=connectXXProxy
+alias ssh-fwd=sshPortForward
