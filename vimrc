@@ -153,7 +153,7 @@ autocmd BufNewFile *.py, exec ":call SetTitle()"
 func SetTitle() 
   if &filetype == 'python'
     call setline(1,"# -*- coding: utf-8 -*-")
-    call setline(2,"# Created by zhangwei7@baixing.com on ".strftime('%Y-%m-%d %H:%M:%S'))
+    call setline(2,"# Created by zhwei on ".strftime('%Y-%m-%d %H:%M:%S'))
     exec "2"
   endif
   autocmd BufNewFile * normal G

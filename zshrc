@@ -275,7 +275,7 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git django laravel5 osx)
+plugins=(git django osx)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -348,7 +348,7 @@ alias gitaa='git add . && git commit -a'
 eval "$(hub alias -s)"
 
 # For PHP
-alias rebuild='composer dumpautoload; php artisan clear-compiled; php artisan ide-helper:generate -M; php artisan ide-helper:models -n; php artisan optimize;'
+alias rebuild='composer dumpautoload; php artisan clear-compiled; php artisan ide-helper:generate -M; php artisan ide-helper:models -n; php artisan optimize; php artisan view:clear;'
 
 # 自动重连ssh端口转发
 sshPortForward() {
