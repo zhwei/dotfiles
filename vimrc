@@ -134,6 +134,7 @@ Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'alfredodeza/pytest.vim'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'majutsushi/tagbar'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'HerringtonDarkholme/jedi-syntax'
@@ -232,7 +233,7 @@ let g:SuperTabDefaultCompletionType = "<c-x><c-n>"
 
 "airline
 "
-let g:airline_theme='molokai'
+let g:airline_theme='luna'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
