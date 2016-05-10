@@ -361,3 +361,6 @@ sshPortForward() {
     done
 }
 alias ssh-fwd=sshPortForward
+
+# For Composer
+export PATH="$HOME/.composer/vendor/bin:$PATH"
