@@ -357,6 +357,7 @@ sshPortForward() {
         echo 'Connecting ...';
         ssh -N -D $1 $2
         sleep 1
+        date;
         echo 'connect lost, retrying ...';
     done
 }

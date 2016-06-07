@@ -1,23 +1,29 @@
 [user]
-  name = zhwei
-  username = zhwei
-  email = zhwei.yes@gmail.com
+	name = zhwei
+	username = zhwei
+	email = zhwei.yes@gmail.com
 [core]
-  editor = vim
+	editor = vim
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [alias]
-  ci = commit -a -v
-  co = checkout
-  po = pull origin
-  st = status
-  br = branch
-  throw = reset --hard HEAD
-  throwh = reset --hard HEAD^
+	ci = commit -a -v
+	co = checkout
+	cb = checkout -b
+	po = pull origin
+	st = status
+	br = branch
+	throw = reset --hard HEAD
+	throwh = reset --hard HEAD^
+	ss = stash
+	sp = stash pop
+	d = diff
 [color]
-  ui = true
+	ui = true
 [push]
-  default = current
+	default = current
 [filter "lfs"]
-  clean = git lfs clean %f
-  smudge = git lfs smudge %f
-  required = true
-[http]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
+[fetch]
+	prune = true
