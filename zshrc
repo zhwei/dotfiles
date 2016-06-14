@@ -338,7 +338,7 @@ zle -N backward-delete-char check-cmd-backward-delete-char
 # Git flow
 gitFetchAndMerge() {
     git fetch $1
-    git merge $1/master
+    git merge remotes/$1/master
 }
 alias merge=gitFetchAndMerge
 alias gitp='git push origin '
@@ -365,3 +365,5 @@ alias ssh-fwd=sshPortForward
 
 # For Composer
 export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
