@@ -13,6 +13,7 @@ targets=(
 "oh-my-zsh"
 "zshrc"
 "gitconfig"
+"gitignore_global"
 "ideavimrc"
 "tmux.conf"
 )
