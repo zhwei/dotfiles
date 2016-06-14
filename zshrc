@@ -343,6 +343,7 @@ gitFetchAndMerge() {
 alias merge=gitFetchAndMerge
 alias gitp='git push origin '
 alias gitaa='git add . && git commit -a'
+alias git-update-summodule='git submodule foreach git pull origin master'
 
 # for hub
 eval "$(hub alias -s)"
