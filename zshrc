@@ -338,7 +338,7 @@ zle -N backward-delete-char check-cmd-backward-delete-char
 # Git flow
 gitFetchMergeAndPush() {
     git fetch $1
-    git merge remotes/$1/master
+    git merge remotes/$1/master --no-edit
     git push
 }
 alias merge=gitFetchMergeAndPush
