@@ -336,11 +336,12 @@ zle -N backward-delete-char check-cmd-backward-delete-char
 #export GOBIN = /usr/local/lib/go/bin 
 
 # Git flow
-gitFetchAndMerge() {
+gitFetchMergeAndPush() {
     git fetch $1
     git merge remotes/$1/master
+    git push
 }
-alias merge=gitFetchAndMerge
+alias merge=gitFetchMergeAndPush
 alias gitp='git push origin '
 alias gitaa='git add . && git commit -a'
 alias git-update-summodule='git submodule foreach git pull origin master'
@@ -348,7 +349,7 @@ alias git-update-summodule='git submodule foreach git pull origin master'
 # for hub
 eval "$(hub alias -s)"
 
-# For PHP
+# For Laravel
 alias rebuild='composer dumpautoload; php artisan clear-compiled; php artisan ide-helper:generate -M; php artisan ide-helper:models -n; php artisan optimize; php artisan view:clear;'
 
 # 自动重连ssh端口转发
@@ -367,4 +368,5 @@ alias ssh-fwd=sshPortForward
 # For Composer
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 
+# For Item2
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
