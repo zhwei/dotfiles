@@ -10,6 +10,7 @@
 	ci = commit -a -v
 	co = checkout
 	cb = checkout -b
+	cm = checkout master
 	po = pull origin
 	st = status
 	br = branch
