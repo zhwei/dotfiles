@@ -346,6 +346,13 @@ alias gitp='git push origin '
 alias gitaa='git add . && git commit -a'
 alias git-update-summodule='git submodule foreach git pull origin master'
 
+gitRecreateBranch() {
+    git checkout master
+    git branch -D $1
+    git checkout -b $1
+}
+alias git-recreate=gitRecreateBranch
+
 # for hub
 eval "$(hub alias -s)"
 
