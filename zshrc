@@ -356,6 +356,22 @@ alias git-recreate=gitRecreateBranch
 # for hub
 eval "$(hub alias -s)"
 
+
+# For PHP
+
+PHPUnitAuto() {
+	relative='./vendor/bin/phpunit'
+	if [ -f $relative ];
+	then
+		echo "Run $relative"
+		eval $relative
+	else
+		phpunit
+	fi
+}
+
+alias phpunit-auto=PHPUnitAuto
+
 # For Laravel
 alias rebuild='composer dumpautoload; php artisan clear-compiled; php artisan ide-helper:generate -M; php artisan ide-helper:models -n; php artisan optimize; php artisan view:clear;'
 
@@ -377,3 +393,6 @@ export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 # For Item2
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# For Ngrok
+alias ngrok-cn="${HOME}"/dotfiles/bin/ngrok
