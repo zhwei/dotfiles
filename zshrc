@@ -364,9 +364,9 @@ PHPUnitAuto() {
 	if [ -f $relative ];
 	then
 		echo "Run $relative"
-		eval $relative
+		eval $relative "$@"
 	else
-		phpunit
+		phpunit "$@"
 	fi
 }
 
@@ -380,7 +380,7 @@ sshPortForward() {
     while true
     do
         echo 'Connecting ...';
-        ssh -N -D $1 $2
+        ssh -N -D "$@"
         sleep 1
         date;
         echo 'connect lost, retrying ...';
