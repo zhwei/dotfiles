@@ -387,6 +387,7 @@ sshPortForward() {
     done
 }
 alias ssh-fwd=sshPortForward
+alias sshm='python "${HOME}"/dotfiles/scripts/sshm.py'
 
 # For Composer
 export PATH="$HOME/.composer/vendor/bin:$PATH"
