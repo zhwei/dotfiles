@@ -375,6 +375,9 @@ alias phpunit-auto=PHPUnitAuto
 # For Laravel
 alias rebuild='composer dumpautoload; php artisan clear-compiled; php artisan ide-helper:generate -M; php artisan ide-helper:models -n; php artisan optimize; php artisan view:clear;'
 
+# For tinker
+alias tinker='php artisan tinker'
+
 # 自动重连ssh端口转发
 sshPortForward() {
     while true
@@ -392,8 +395,20 @@ alias sshm='python "${HOME}"/dotfiles/scripts/sshm.py'
 # For Composer
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 
+# For yarn
+export PATH="$PATH:`yarn global bin`"
+
+# For npm .bin
+export PATH="$PATH:./node_modules/.bin"
+
 # For Item2
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # For Ngrok
 alias ngrok-cn="${HOME}"/dotfiles/bin/ngrok
+
+# For pyenv
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
