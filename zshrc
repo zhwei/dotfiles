@@ -407,6 +407,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # For Ngrok
 alias ngrok-cn="${HOME}"/dotfiles/bin/ngrok
 
+alias ctop='docker run --rm -ti --name=ctop -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
+
 # For pyenv
 
 export PYENV_ROOT="$HOME/.pyenv"
