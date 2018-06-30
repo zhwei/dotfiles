@@ -109,6 +109,9 @@ alias bpy='bpython'
 alias ac_env="source env/bin/activate"
 alias ac_vir="source ~/config/virtualenv.sh"
 
+# docker
+alias drc='docker-compose'
+
 #效果超炫的提示符，如需要禁用，注释下面配置   
 function precmd {
 
@@ -414,3 +417,10 @@ alias ctop='docker run --rm -ti --name=ctop -v /var/run/docker.sock:/var/run/doc
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+
+# For Java
+JAVA_HOME=$(/usr/libexec/java_home)
+
+# Add sonar-scanner
+export PATH="$HOME/tools/sonar-scanner/bin:$PATH"
