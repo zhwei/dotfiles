@@ -21,6 +21,7 @@
 	ss = stash
 	sp = stash pop
 	d = diff
+	pp = !git pull && git push
 [color]
 	ui = true
 [push]

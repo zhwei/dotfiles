@@ -399,7 +399,8 @@ alias sshm='python "${HOME}"/dotfiles/scripts/sshm.py'
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 # For yarn
-export PATH="$PATH:`yarn global bin`"
+#export PATH="$PATH:`yarn global bin`"
+export PATH="$PATH:/usr/local/bin"
 
 # For npm .bin
 export PATH="$PATH:./node_modules/.bin"
