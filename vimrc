@@ -114,7 +114,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'go.vim'
 Plugin 'wting/rust.vim'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'suan/vim-instant-markdown'
+" Plugin 'suan/vim-instant-markdown'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'sjl/gundo.vim'
 Plugin 'hynek/vim-python-pep8-indent'
@@ -125,7 +125,7 @@ Plugin 'tmatilai/vim-monit'
 Plugin 'kien/ctrlp.vim.git'
 Plugin 'Glench/Vim-Jinja2-Syntax.git'
 Plugin 'scrooloose/nerdtree.git'
-"Plugin 'msanders/snipmate.vim.git'
+" Plugin 'msanders/snipmate.vim.git'
 Plugin 'scrooloose/nerdcommenter.git' " 注释插件
 Plugin 'davidhalter/jedi-vim'
 Plugin 'tpope/vim-fugitive'
@@ -178,11 +178,11 @@ func! CompileRunGcc()
     :!time bash %
   elseif &filetype == 'python'
     exec "!export PYTHONPATH=`pwd` && time python3 %"
-    elseif &filetype == 'html'
-        exec "!firefox % &"
-    elseif &filetype == 'go'
-        " exec "!go build %<"
-        exec "!time go run %"
+  elseif &filetype == 'html'
+    exec "!firefox % &"
+  elseif &filetype == 'go'
+    " exec "!go build %<"
+    exec "!time go run %"
   endif
 endfunc
 
