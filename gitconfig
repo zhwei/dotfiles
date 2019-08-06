@@ -8,7 +8,7 @@
 	quotepath = false
 	autocrlf = input
 	ignorecase = false
-	excludesfile = /Users/zhwei/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [alias]
 	ci = commit -a -v
 	co = checkout

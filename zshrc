@@ -343,7 +343,7 @@ export PATH="$PATH:$GOPATH/bin"
 alias git-update-summodule='git submodule foreach git pull origin master'
 
 # for hub
-eval "$(hub alias -s)"
+# eval "$(hub alias -s)"
 
 
 # For PHP
@@ -397,12 +397,12 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 alias ngrok-cn="${HOME}"/dotfiles/bin/ngrok
 
 alias ctop='docker run --rm -ti --name=ctop -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
-alias with_proxy='https_proxy="http://127.0.0.1:6152" http_proxy="http://127.0.0.1:6152"'
+alias wp ='https_proxy="http://127.0.0.1:6152" http_proxy="http://127.0.0.1:6152"'
 
 # For pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 
 
 # 启用 homebrew 阿里云镜像
@@ -430,7 +430,7 @@ brew_reset_aliyun() {
 
 
 # For Java
-JAVA_HOME=$(/usr/libexec/java_home)
+# JAVA_HOME=$(/usr/libexec/java_home)
 
 # Add sonar-scanner
 export PATH="$HOME/tools/sonar-scanner/bin:$PATH"
