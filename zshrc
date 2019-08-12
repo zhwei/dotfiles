@@ -397,7 +397,10 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 alias ngrok-cn="${HOME}"/dotfiles/bin/ngrok
 
 alias ctop='docker run --rm -ti --name=ctop -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
-alias wp ='https_proxy="http://127.0.0.1:6152" http_proxy="http://127.0.0.1:6152"'
+
+wp () {
+    https_proxy="http://127.0.0.1:6152" http_proxy="http://127.0.0.1:6152" $@
+}
 
 # For pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -440,3 +443,6 @@ export PATH="$HOME/tools/sonar-scanner/bin:$PATH"
 if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
 # The next line enables shell command completion for gcloud.
 if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+source ~/.phpbrew/bashrc

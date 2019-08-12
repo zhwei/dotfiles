@@ -1,0 +1,3 @@
+
+source ~/.phpbrew/phpbrew.fish
+
