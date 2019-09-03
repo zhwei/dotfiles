@@ -8,6 +8,7 @@
 	quotepath = false
 	autocrlf = input
 	ignorecase = false
+	excludesfile = /Users/zhwei/.gitignore_global
 [alias]
 	ci = commit -a -v
 	co = checkout
@@ -21,7 +22,8 @@
 	ss = stash
 	sp = stash pop
 	d = diff
-	pp = !git pull && git push
+	pp = !git pull --no-edit && git push
+	aa = !git add . && git commit -a
 [color]
 	ui = true
 [push]
@@ -39,3 +41,5 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[http]
+	proxy = 127.0.0.1:6152

@@ -81,7 +81,6 @@ zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'
 alias cp='cp -i'
 alias mv='mv -i'
 alias clpyc='rm *.pyc -rf'
-alias ls='ls -F --color=auto'
 alias ll='ls -la'
 alias l='ls'
 alias grep='grep --color=auto'
@@ -100,7 +99,7 @@ alias diff='colordiff'
 # ranger
 alias r='ranger'
 
-##python
+#python
 alias py='python3'
 alias ipy='ipython2.7'
 alias bpy='bpython'
@@ -238,7 +237,8 @@ $PR_LIGHT_BLUE:%(!.$PR_RED.$PR_WHITE)%#$PR_BLUE)$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OU
 $PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
 $PR_NO_COLOUR '
 
-    RPROMPT='$PR_CYAN<= {$PR_YELLOW%D{ %A %H:%M}$PR_CYAN }$PR_NO_COLOUR'
+    #RPROMPT='$PR_CYAN<= {$PR_YELLOW%D{%H:%M:%S}$PR_CYAN}$PR_NO_COLOUR'
+    RPROMPT=''
 
     PS2='$PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
 $PR_BLUE$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT(\
@@ -337,24 +337,10 @@ zle -N backward-delete-char check-cmd-backward-delete-char
 #export GOARCH = amd64
 #export GOOS = linux
 #export GOBIN = /usr/local/lib/go/bin 
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
 
-# Git flow
-gitFetchMergeAndPush() {
-    git fetch $1
-    git merge remotes/$1/master --no-edit
-    git push
-}
-alias merge=gitFetchMergeAndPush
-alias gitp='git push origin '
-alias gitaa='git add . && git commit -a'
 alias git-update-summodule='git submodule foreach git pull origin master'
-
-gitRecreateBranch() {
-    git checkout master
-    git branch -D $1
-    git checkout -b $1
-}
-alias git-recreate=gitRecreateBranch
 
 # for hub
 eval "$(hub alias -s)"
@@ -372,14 +358,20 @@ PHPUnitAuto() {
 		phpunit "$@"
 	fi
 }
-
 alias phpunit-auto=PHPUnitAuto
 
-# For Laravel
-alias rebuild='composer dumpautoload; php artisan clear-compiled; php artisan ide-helper:generate -M; php artisan ide-helper:models -n; php artisan optimize; php artisan view:clear;'
-
-# For tinker
 alias tinker='php artisan tinker'
+alias switch2php70='brew unlink php@7.3 && brew link --force --overwrite php@7.0'
+alias switch2php73='brew unlink php@7.0 && brew link --force --overwrite php@7.3'
+alias php73='/usr/local/Cellar/php/7.3.6_1/bin/php'
+alias php73composer='/usr/local/Cellar/php/7.3.6_1/bin/php /usr/local/bin/composer'
+## for phpbrew
+[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+export PHPBREW_SET_PROMPT=1
+export EDITOR=vim
+alias pb='phpbrew'
+alias phpv='which php && php -v'
+
 
 # 自动重连ssh端口转发
 sshPortForward() {
@@ -413,11 +405,39 @@ alias ngrok-cn="${HOME}"/dotfiles/bin/ngrok
 
 alias ctop='docker run --rm -ti --name=ctop -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
 
-# For pyenv
+#proxy
+wp() {
+    https_proxy="http://127.0.0.1:6152" http_proxy="http://127.0.0.1:6152" $@
+}
 
+# For pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+
+# 启用 homebrew 阿里云镜像
+brew_enable_aliyun() {
+    # 替换brew.git:
+    cd "$(brew --repo)"
+    git remote set-url origin https://mirrors.aliyun.com/homebrew/brew.git
+    # 替换homebrew-core.git:
+    cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+    git remote set-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git
+    # 应用生效
+    brew update
+    # 替换homebrew-bottles:
+    export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
+}
+brew_reset_aliyun() {
+    # 重置brew.git:
+    cd "$(brew --repo)"
+    git remote set-url origin https://github.com/Homebrew/brew.git
+    # 重置homebrew-core.git:
+    cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+    git remote set-url origin https://github.com/Homebrew/homebrew-core.git
+    export HOMEBREW_BOTTLE_DOMAIN=''
+}
 
 
 # For Java
@@ -425,3 +445,15 @@ JAVA_HOME=$(/usr/libexec/java_home)
 
 # Add sonar-scanner
 export PATH="$HOME/tools/sonar-scanner/bin:$PATH"
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
+# The next line enables shell command completion for gcloud.
+if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+# bzip2
+export PATH="/usr/local/opt/bzip2/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/bzip2/lib"
+export CPPFLAGS="-I/usr/local/opt/bzip2/include"
