@@ -365,13 +365,13 @@ alias switch2php70='brew unlink php@7.3 && brew link --force --overwrite php@7.0
 alias switch2php73='brew unlink php@7.0 && brew link --force --overwrite php@7.3'
 alias php73='/usr/local/Cellar/php/7.3.6_1/bin/php'
 alias php73composer='/usr/local/Cellar/php/7.3.6_1/bin/php /usr/local/bin/composer'
+
 ## for phpbrew
 [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 export PHPBREW_SET_PROMPT=1
 export EDITOR=vim
 alias pb='phpbrew'
 alias phpv='which php && php -v'
-
 
 # 自动重连ssh端口转发
 sshPortForward() {
@@ -404,6 +404,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 alias ngrok-cn="${HOME}"/dotfiles/bin/ngrok
 
 alias ctop='docker run --rm -ti --name=ctop -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
+alias with_proxy='https_proxy="http://127.0.0.1:6152" http_proxy="http://127.0.0.1:6152"'
 
 #proxy
 wp() {
