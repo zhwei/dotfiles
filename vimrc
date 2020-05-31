@@ -46,6 +46,7 @@ set shortmess=atI
 set report=0
 setlocal noswapfile
 set backspace=2 " make backspace work like most other apps
+set nofoldenable
 
 "
 " 下面两条配置使得tab显示为 >--- ,行尾空格显示为+
@@ -324,3 +325,4 @@ nmap <Leader>pm :Pytest method verbose<CR>
 "
 "CtrlP
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*/node_modules/*,*.jpg,*.png
+

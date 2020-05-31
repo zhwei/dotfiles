@@ -91,7 +91,7 @@ alias gvim='gvim -n'
 alias vi='vim'
 alias la="ls -a"
 alias cl="clear"
-alias wi='whoami'
+alias pstorm='phpstorm'
 
 #Colordiff
 alias diff='colordiff'
@@ -370,6 +370,7 @@ alias php73composer='/usr/local/Cellar/php/7.3.6_1/bin/php /usr/local/bin/compos
 [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 export PHPBREW_SET_PROMPT=1
 export EDITOR=vim
+export PHPBREW_RC_ENABLE=1
 alias pb='phpbrew'
 alias phpv='which php && php -v'
 
@@ -394,11 +395,20 @@ export PATH="$HOME/.composer/vendor/bin:$PATH"
 #export PATH="$PATH:`yarn global bin`"
 export PATH="$PATH:/usr/local/bin"
 
-# For npm .bin
+# For npm
 export PATH="$PATH:./node_modules/.bin"
+alias cnpm="npm --registry=https://registry.npm.taobao.org \
+--cache=$HOME/.npm/.cache/cnpm \
+--disturl=https://npm.taobao.org/dist \
+--userconfig=$HOME/.cnpmrc"
 
 # For Item2
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+iterm2_print_user_vars() {
+    iterm2_set_user_var php_version `php -r 'echo phpversion();'`
+    iterm2_set_user_var last_exit_code "$?"
+}
 
 # For Ngrok
 alias ngrok-cn="${HOME}"/dotfiles/bin/ngrok
@@ -458,3 +468,40 @@ if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/co
 export PATH="/usr/local/opt/bzip2/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/bzip2/lib"
 export CPPFLAGS="-I/usr/local/opt/bzip2/include"
+
+
+# acme.sh
+. "/Users/zhwei/.acme.sh/acme.sh.env"
+
+
+# retry function
+# https://gist.github.com/sj26/88e1c6584397bb7c13bd11108a579746
+function retry {
+  local retries=$1
+  shift
+
+  local count=0
+  until "$@"; do
+    exit=$?
+    # wait=$((2 ** $count)) # wait by retry times
+    wait=1
+    count=$(($count + 1))
+    if [ $count -lt $retries ]; then
+      echo ""
+      echo "====================================="
+      echo "=> Retry $count/$retries exited $exit, retrying in $wait seconds..."
+      echo "====================================="
+      echo ""
+      sleep $wait
+    else
+      echo ""
+      echo "====================================="
+      echo "=> Retry $count/$retries exited $exit, no more retries left."
+      echo "====================================="
+      echo ""
+      return $exit
+    fi
+  done
+  return 0
+}
+
