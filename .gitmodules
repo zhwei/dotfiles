@@ -7,3 +7,6 @@
 [submodule "pure"]
 	path = zsh/pure
 	url = https://github.com/sindresorhus/pure
+[submodule "vim/awesome-colors"]
+	path = vim/awesome-colors
+	url = https://github.com/rafi/awesome-vim-colorschemes.git
