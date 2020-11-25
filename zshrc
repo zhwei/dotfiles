@@ -1,8 +1,3 @@
-#普通命令提示符，在控制台下可以正常显示，如需使用取消注释，并把底部有关提示符的语句注释掉
-#RPROMPT='%/'
-#PROMPT='%{[36m%}%n%{[35m%}@%{[34m%}%M %{[33m%}%D %T  %{[32m%}%/ %{[31m%}>>%{[m%}'
-
-
 #关于历史纪录的配置
 # number of lines kept in history
 export HISTSIZE=10000
@@ -96,157 +91,11 @@ alias pstorm='phpstorm'
 #Colordiff
 alias diff='colordiff'
 
-# ranger
-alias r='ranger'
-
-#python
-alias py='python3'
-alias ipy='ipython2.7'
-alias bpy='bpython'
-
 #virtualenv
 alias ac_env="source env/bin/activate"
 alias ac_vir="source ~/config/virtualenv.sh"
 
-# docker
-alias drc='docker-compose'
 
-#效果超炫的提示符，如需要禁用，注释下面配置   
-function precmd {
-
-    local TERMWIDTH
-    (( TERMWIDTH = ${COLUMNS} - 1 ))
-
-
-    ###
-    # Truncate the path if it's too long.
-
-    PR_FILLBAR=""
-    PR_PWDLEN=""
-
-    local promptsize=${#${(%):---(%n@%m:%l)---()--}}
-    local pwdsize=${#${(%):-%~}}
-
-    if [[ "$promptsize + $pwdsize" -gt $TERMWIDTH ]]; then
-    ((PR_PWDLEN=$TERMWIDTH - $promptsize))
-    else
-    PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $pwdsize)))..${PR_HBAR}.)}"
-    fi
-
-    ###
-    # Get APM info.
-
-    #if which ibam > /dev/null; then
-    #PR_APM_RESULT=`ibam --percentbattery`
-    #elif which apm > /dev/null; then
-    #PR_APM_RESULT=`apm`
-    #fi
-}
-
-
-setopt extended_glob
-preexec () {
-    if [[ "$TERM" == "screen" ]]; then
-    local CMD=${1[(wr)^(*=*|sudo|-*)]}
-    echo -n "\ek$CMD\e\\"
-    fi
-}
-
-setprompt () {
-    ###
-    # Need this so the prompt will work.
-
-    setopt prompt_subst
-
-
-    ###
-    # See if we can use colors.
-
-    autoload colors zsh/terminfo
-    if [[ "$terminfo[colors]" -ge 8 ]]; then
-    colors
-    fi
-    for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-    eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
-    eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
-    (( count = $count + 1 ))
-    done
-    PR_NO_COLOUR="%{$terminfo[sgr0]%}"
-
-
-    ###
-    # See if we can use extended characters to look nicer.
-
-    typeset -A altchar
-    set -A altchar ${(s..)terminfo[acsc]}
-    PR_SET_CHARSET="%{$terminfo[enacs]%}"
-    PR_SHIFT_IN="%{$terminfo[smacs]%}"
-    PR_SHIFT_OUT="%{$terminfo[rmacs]%}"
-    PR_HBAR=${altchar[q]:--}
-    #PR_HBAR=" "
-    PR_ULCORNER=${altchar[l]:--}
-    PR_LLCORNER=${altchar[m]:--}
-    PR_LRCORNER=${altchar[j]:--}
-    PR_URCORNER=${altchar[k]:--}
-
-
-    ###
-    # Decide if we need to set titlebar text.
-
-    case $TERM in
-    xterm*)
-        PR_TITLEBAR=$'%{\e]0;%(!.-=*[ROOT]*=- | .)%n@%m:%~ | ${COLUMNS}x${LINES} | %y\a%}'
-        ;;
-    screen)
-        PR_TITLEBAR=$'%{\e_screen \005 (\005t) | %(!.-=[ROOT]=- | .)%n@%m:%~ | ${COLUMNS}x${LINES} | %y\e\\%}'
-        ;;
-    *)
-        PR_TITLEBAR=''
-        ;;
-    esac
-
-
-    ###
-    # Decide whether to set a screen title
-    if [[ "$TERM" == "screen" ]]; then
-    PR_STITLE=$'%{\ekzsh\e\\%}'
-    else
-    PR_STITLE=''
-    fi
-
-
-    ###
-    # APM detection
-
-    PR_APM=''
-
-    ###
-    # Finally, the prompt.
-
-    PROMPT='$PR_SET_CHARSET$PR_STITLE${(e)PR_TITLEBAR}\
-$PR_CYAN$PR_SHIFT_IN$PR_ULCORNER$PR_BLUE$PR_HBAR$PR_SHIFT_OUT(\
-$PR_GREEN%(!.%SROOT%s.%n)$PR_GREEN@%m:%l\
-$PR_BLUE)$PR_SHIFT_IN$PR_HBAR$PR_CYAN$PR_HBAR${(e)PR_FILLBAR}$PR_BLUE$PR_HBAR$PR_SHIFT_OUT(\
-$PR_MAGENTA%$PR_PWDLEN<...<%~%<<\
-$PR_BLUE)$PR_SHIFT_IN$PR_HBAR$PR_CYAN$PR_URCORNER$PR_SHIFT_OUT\
-
-$PR_CYAN$PR_SHIFT_IN$PR_LLCORNER$PR_BLUE$PR_HBAR$PR_SHIFT_OUT(\
-%(?..$PR_LIGHT_RED%?$PR_BLUE:)\
-${(e)PR_APM}$PR_YELLOW%D{%H:%M}\
-$PR_LIGHT_BLUE:%(!.$PR_RED.$PR_WHITE)%#$PR_BLUE)$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
-$PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
-$PR_NO_COLOUR '
-
-    #RPROMPT='$PR_CYAN<= {$PR_YELLOW%D{%H:%M:%S}$PR_CYAN}$PR_NO_COLOUR'
-    RPROMPT=''
-
-    PS2='$PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
-$PR_BLUE$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT(\
-$PR_LIGHT_GREEN%_$PR_BLUE)$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
-$PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT$PR_NO_COLOUR '
-}
-
-setprompt
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -286,57 +135,47 @@ source $ZSH/oh-my-zsh.sh
 
 #命令粗体
 autoload colors
-colors
- 
 for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-eval _$color='%{$terminfo[bold]$fg[${(L)color}]%}'
-eval $color='%{$fg[${(L)color}]%}'
-(( count = $count + 1 ))
+    eval _$color='%{$terminfo[bold]$fg[${(L)color}]%}'
+    eval $color='%{$fg[${(L)color}]%}'
+    (( count = $count + 1 ))
 done
 FINISH="%{$terminfo[sgr0]%}"
-#}}}
 
 
 #漂亮又实用的命令高亮界面
-setopt extended_glob
- TOKENS_FOLLOWED_BY_COMMANDS=('|' '||' ';' '&' '&&' 'sudo' 'do' 'time' 'strace')
-
- recolor-cmd() {
-     region_highlight=()
-     colorize=true
-     start_pos=0
-     for arg in ${(z)BUFFER}; do
-         ((start_pos+=${#BUFFER[$start_pos+1,-1]}-${#${BUFFER[$start_pos+1,-1]## #}}))
-         ((end_pos=$start_pos+${#arg}))
-         if $colorize; then
-             colorize=false
-             res=$(LC_ALL=C builtin type $arg 2>/dev/null)
-             case $res in
-                 *'reserved word'*)   style="fg=magenta,bold";;
-                 *'alias for'*)       style="fg=cyan,bold";;
-                 *'shell builtin'*)   style="fg=yellow,bold";;
-                 *'shell function'*)  style='fg=green,bold';;
-                 *"$arg is"*)
-                     [[ $arg = 'sudo' ]] && style="fg=red,bold" || style="fg=blue,bold";;
-                 *)                   style='none,bold';;
-             esac
-             region_highlight+=("$start_pos $end_pos $style")
-         fi
-         [[ ${${TOKENS_FOLLOWED_BY_COMMANDS[(r)${arg//|/\|}]}:+yes} = 'yes' ]] && colorize=true
-         start_pos=$end_pos
-     done
- }
+TOKENS_FOLLOWED_BY_COMMANDS=('|' '||' ';' '&' '&&' 'sudo' 'do' 'time' 'strace')
+recolor-cmd() {
+    region_highlight=()
+    colorize=true
+    start_pos=0
+    for arg in ${(z)BUFFER}; do
+        ((start_pos+=${#BUFFER[$start_pos+1,-1]}-${#${BUFFER[$start_pos+1,-1]## #}}))
+        ((end_pos=$start_pos+${#arg}))
+        if $colorize; then
+            colorize=false
+            res=$(LC_ALL=C builtin type $arg 2>/dev/null)
+            case $res in
+                *'reserved word'*)   style="fg=magenta,bold";;
+                *'alias for'*)       style="fg=cyan,bold";;
+                *'shell builtin'*)   style="fg=yellow,bold";;
+                *'shell function'*)  style='fg=green,bold';;
+                *"$arg is"*)
+                    [[ $arg = 'sudo' ]] && style="fg=red,bold" || style="fg=blue,bold";;
+                *)                   style='none,bold';;
+            esac
+            region_highlight+=("$start_pos $end_pos $style")
+        fi
+        [[ ${${TOKENS_FOLLOWED_BY_COMMANDS[(r)${arg//|/\|}]}:+yes} = 'yes' ]] && colorize=true
+        start_pos=$end_pos
+    done
+}
 check-cmd-self-insert() { zle .self-insert && recolor-cmd }
 check-cmd-backward-delete-char() { zle .backward-delete-char && recolor-cmd }
-
 zle -N self-insert check-cmd-self-insert
 zle -N backward-delete-char check-cmd-backward-delete-char
 
 #go config
-#export GOROOT = /usr/local/lib/go
-#export GOARCH = amd64
-#export GOOS = linux
-#export GOBIN = /usr/local/lib/go/bin 
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
 
@@ -365,14 +204,25 @@ alias switch2php70='brew unlink php@7.3 && brew link --force --overwrite php@7.0
 alias switch2php73='brew unlink php@7.0 && brew link --force --overwrite php@7.3'
 alias php73='/usr/local/Cellar/php/7.3.6_1/bin/php'
 alias php73composer='/usr/local/Cellar/php/7.3.6_1/bin/php /usr/local/bin/composer'
-
 ## for phpbrew
 [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 export PHPBREW_SET_PROMPT=1
 export EDITOR=vim
+export PHPBREW_SYSTEM_PHP="/usr/local/bin/php"
 export PHPBREW_RC_ENABLE=1
 alias pb='phpbrew'
 alias phpv='which php && php -v'
+pbauto() {
+    if [[ -e $PWD/.phpbrewrc ]]; then
+        cat $PWD/.phpbrewrc
+        source $PWD/.phpbrewrc
+    else
+        echo "ERROR: .phpbrewrc not found"
+    fi;
+}
+
+# for bison
+export PATH="/usr/local/opt/bison/bin:$PATH"
 
 # 自动重连ssh端口转发
 sshPortForward() {
@@ -413,11 +263,8 @@ iterm2_print_user_vars() {
 # For Ngrok
 alias ngrok-cn="${HOME}"/dotfiles/bin/ngrok
 
-alias ctop='docker run --rm -ti --name=ctop -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
-alias with_proxy='https_proxy="http://127.0.0.1:6152" http_proxy="http://127.0.0.1:6152"'
-
 #proxy
-wp() {
+withproxy() {
     https_proxy="http://127.0.0.1:6152" http_proxy="http://127.0.0.1:6152" $@
 }
 
@@ -456,12 +303,6 @@ JAVA_HOME=$(/usr/libexec/java_home)
 
 # Add sonar-scanner
 export PATH="$HOME/tools/sonar-scanner/bin:$PATH"
-
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
-# The next line enables shell command completion for gcloud.
-if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
 
 
 # bzip2
@@ -505,3 +346,9 @@ function retry {
   return 0
 }
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/zhwei/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/zhwei/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/zhwei/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/zhwei/google-cloud-sdk/completion.zsh.inc'; fi

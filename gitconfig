@@ -43,3 +43,7 @@
 	trustExitCode = true
 [http]
 	proxy = 127.0.0.1:6152
+[commit]
+	template = /Users/zhwei/.stCommitMsg
+[pull]
+	rebase = false
