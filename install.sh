@@ -11,6 +11,7 @@ targets=(
 "vim"
 "vimrc"
 "oh-my-zsh"
+"zsh"
 "zshrc"
 "gitconfig"
 "gitignore_global"

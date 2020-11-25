@@ -3,5 +3,5 @@ My dotfiles
 ## Usage
 
 ```bash
-	./install.sh
+bash install.sh
 ```

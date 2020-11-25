@@ -4,7 +4,6 @@
 	email = zhwei.yes@gmail.com
 [core]
 	editor = vim
-	#pager = diff-so-fancy | less --tabs=4 -RFX
 	quotepath = false
 	autocrlf = input
 	ignorecase = false
@@ -41,8 +40,6 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
-[http]
-	proxy = 127.0.0.1:6152
 [commit]
 	template = /Users/zhwei/.stCommitMsg
 [pull]
