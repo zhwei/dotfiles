@@ -114,6 +114,8 @@ prompt pure
 ## colors
 zstyle :prompt:pure:path color cyan
 zstyle :prompt:pure:prompt:success color cyan
+zstyle :prompt:pure:git:branch color yellow
+zstyle :prompt:pure:execution_time color black
 
 
 #####################################################################
