@@ -198,10 +198,10 @@ phpunit-auto() {
 	fi
 }
 ## phpbrew
-source ~/.phpbrew/bashrc
-export PHPBREW_SET_PROMPT=1
+export PHPBREW_SET_PROMPT=0
 export PHPBREW_SYSTEM_PHP="/usr/local/bin/php"
 export PHPBREW_RC_ENABLE=1
+source ~/.phpbrew/bashrc
 alias pb='phpbrew'
 pbauto() {
     if [[ -e $PWD/.phpbrewrc ]]; then
@@ -211,6 +211,13 @@ pbauto() {
         echo "ERROR: .phpbrewrc not found"
     fi;
 }
+## phpbrew prompt for pure
+_prompt_pure_phpbrew_version() {
+    if [[ -n "$PHPBREW_PHP" ]]; then
+        psvar[12]="$PHPBREW_PHP $psvar[12]"
+    fi
+}
+add-zsh-hook precmd _prompt_pure_phpbrew_version
 ## composer
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 
