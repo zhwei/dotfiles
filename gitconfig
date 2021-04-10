@@ -44,3 +44,5 @@
 	template = /Users/zhwei/.stCommitMsg
 [pull]
 	rebase = false
+[init]
+	defaultBranch = master

@@ -131,6 +131,7 @@ zstyle :prompt:pure:execution_time color black
 
 # env
 export EDITOR=vim
+export LANG=en_GB
 
 
 # alias
@@ -264,7 +265,8 @@ iterm2_print_user_vars() {
 # export PATH="$PYENV_ROOT/bin:$PATH"
 # eval "$(pyenv init -)"
 
-
+# brew
+export PATH="/usr/local/sbin:$PATH"
 # brew aliyun mirror
 brew_enable_aliyun_mirror() {
     # 替换brew.git:
@@ -304,10 +306,18 @@ export CPPFLAGS="-I/usr/local/opt/bzip2/include"
 
 
 ## gcp
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/zhwei/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/zhwei/google-cloud-sdk/path.zsh.inc'; fi
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/zhwei/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/zhwei/google-cloud-sdk/completion.zsh.inc'; fi
+enable_gcp() {
+    # The next line updates PATH for the Google Cloud SDK.
+    if [ -f '/Users/zhwei/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/zhwei/google-cloud-sdk/path.zsh.inc'; fi
+    # The next line enables shell command completion for gcloud.
+    if [ -f '/Users/zhwei/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/zhwei/google-cloud-sdk/completion.zsh.inc'; fi
+}
+
+
+# pipenv
+enable_pipenv_completion() {
+    eval "$(pipenv --completion)"
+}
 
 
 #####################################################################
