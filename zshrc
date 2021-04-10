@@ -253,11 +253,11 @@ alias cnpm="npm --registry=https://registry.npm.taobao.org \
 
 
 # iTerm2
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-iterm2_print_user_vars() {
-    iterm2_set_user_var php_version `php -r 'echo phpversion();'`
-    iterm2_set_user_var last_exit_code "$?"
-}
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# iterm2_print_user_vars() {
+#     iterm2_set_user_var php_version `php -r 'echo phpversion();'`
+#     iterm2_set_user_var last_exit_code "$?"
+# }
 
 
 # pyenv
