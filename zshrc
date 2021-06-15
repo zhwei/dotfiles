@@ -129,9 +129,20 @@ zstyle :prompt:pure:execution_time color black
 # User Configs <start>
 #####################################################################
 
+# set history size
+export HISTSIZE=1000000
+# save history after logout
+export SAVEHIST=1000000
+# append into history file
+setopt INC_APPEND_HISTORY
+# save only one command if 2 common are same and consistent
+setopt HIST_IGNORE_DUPS
+# add timestamp for each entry
+setopt EXTENDED_HISTORY
+
 # env
 export EDITOR=vim
-export LANG=en_GB
+export LANG="en_US.UTF-8"
 
 
 # alias
@@ -184,6 +195,19 @@ export PATH="$PATH:$GOPATH/bin"
 # hub (github)
 eval "$(hub alias -s)"
 
+# merge to branch
+merge-to() {
+    curbr=`git symbolic-ref --short HEAD`;
+    git co $1;
+    echo "> Pulling $1"
+    git pull origin $1;
+    git merge $curbr
+    if [ $? -eq 0 ]; then
+        echo "> Pushing $1"
+        git push origin $1
+        git co -
+    fi
+}
 
 # php
 alias phpv='which php && php -v'
