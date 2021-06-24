@@ -198,14 +198,14 @@ eval "$(hub alias -s)"
 # merge to branch
 merge-to() {
     curbr=`git symbolic-ref --short HEAD`;
-    git co $1;
+    git checkout $1;
     echo "> Pulling $1"
     git pull origin $1;
-    git merge $curbr
+    git merge --no-edit $curbr
     if [ $? -eq 0 ]; then
         echo "> Pushing $1"
         git push origin $1
-        git co -
+        git checkout -
     fi
 }
 
