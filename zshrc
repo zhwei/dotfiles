@@ -197,11 +197,10 @@ eval "$(hub alias -s)"
 
 # merge to branch
 merge-to() {
-    curbr=`git symbolic-ref --short HEAD`;
     git checkout $1;
     echo "> Pulling $1"
     git pull origin $1;
-    git merge --no-edit $curbr
+    git merge --no-edit -
     if [ $? -eq 0 ]; then
         echo "> Pushing $1"
         git push origin $1
@@ -285,9 +284,9 @@ alias cnpm="npm --registry=https://registry.npm.taobao.org \
 
 
 # pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
 
 # brew
 export PATH="/usr/local/sbin:$PATH"
@@ -326,15 +325,17 @@ export CPPFLAGS="-I/usr/local/opt/bzip2/include"
 
 
 # acme.sh
-. "/Users/zhwei/.acme.sh/acme.sh.env"
+if [ -f "~/.acme.sh/acme.sh.env" ]; then
+    . "~/.acme.sh/acme.sh.env"
+fi
 
 
 ## gcp
 enable_gcp() {
     # The next line updates PATH for the Google Cloud SDK.
-    if [ -f '/Users/zhwei/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/zhwei/google-cloud-sdk/path.zsh.inc'; fi
+    if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
     # The next line enables shell command completion for gcloud.
-    if [ -f '/Users/zhwei/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/zhwei/google-cloud-sdk/completion.zsh.inc'; fi
+    if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
 }
 
 

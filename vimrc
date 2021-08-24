@@ -129,7 +129,7 @@ Plugin 'scrooloose/nerdtree.git'
 " Plugin 'msanders/snipmate.vim.git'
 Plugin 'scrooloose/nerdcommenter.git' " 注释插件
 Plugin 'davidhalter/jedi-vim'
-Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'Shougo/neocomplete.vim'

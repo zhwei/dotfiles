@@ -12,6 +12,7 @@
 	ci = commit -a -v
 	co = checkout
 	cb = checkout -b
+	ck = "!git checkout `git branch --format \"%(refname:short)\" | grep \"$1\" | tail -n 1` #"
 	cm = checkout master
 	po = pull origin
 	st = status
