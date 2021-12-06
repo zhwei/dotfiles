@@ -155,6 +155,11 @@ withproxy() {
     https_proxy="http://127.0.0.1:6152" http_proxy="http://127.0.0.1:6152" $@
 }
 
+## colordiff and hightlight diff words
+function diffw {
+    colordiff -U 0 $@ | diff-highlight
+}
+
 ## retry function
 ## https://gist.github.com/sj26/88e1c6584397bb7c13bd11108a579746
 function retry {
@@ -198,11 +203,17 @@ eval "$(hub alias -s)"
 # merge to branch
 merge-to() {
     git checkout $1;
+    echo
+    echo ">"
     echo "> Pulling $1"
+    echo ">"
     git pull origin $1;
     git merge --no-edit -
     if [ $? -eq 0 ]; then
+        echo
+        echo ">"
         echo "> Pushing $1"
+        echo ">"
         git push origin $1
         git checkout -
     fi
