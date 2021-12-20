@@ -323,6 +323,14 @@ brew_disable_aliyun_mirror() {
     git remote set-url origin https://github.com/Homebrew/homebrew-core.git
     export HOMEBREW_BOTTLE_DOMAIN=''
 }
+# https://docs.brew.sh/Shell-Completion
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
 
 
 # java
