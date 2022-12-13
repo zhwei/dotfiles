@@ -253,9 +253,31 @@ _prompt_pure_phpbrew_version() {
     fi
 }
 add-zsh-hook precmd _prompt_pure_phpbrew_version
+## phpenv
+export PATH="$HOME/.phpenv/bin:$PATH"
+export PATH="$HOME/.phpenv/shims:${PATH}"
+source "$HOME/.phpenv/libexec/../completions/phpenv.zsh"
+phpenv rehash 2>/dev/null
+phpenv() {
+  local command
+  command="$1"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  shell)
+    eval `phpenv "sh-$command" "$@"`;;
+  *)
+    command phpenv "$command" "$@";;
+  esac
+}
 ## composer
 export PATH="$HOME/.composer/vendor/bin:$PATH"
-
+export COMPOSER_MEMORY_LIMIT=-1
+composer1() {
+    COMPOSER_HOME="$HOME/.composer1" /usr/local/bin/composer1 "$@"
+}
 
 # bison
 export PATH="/usr/local/opt/bison/bin:$PATH"
@@ -361,6 +383,11 @@ enable_gcp() {
 # pipenv
 enable_pipenv_completion() {
     eval "$(pipenv --completion)"
+}
+
+
+predate() {
+    xargs -L 1 echo `date +'[%Y-%m-%d %H:%M:%S]'` $1
 }
 
 
