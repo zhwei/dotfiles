@@ -317,9 +317,9 @@ alias cnpm="npm --registry=https://registry.npm.taobao.org \
 
 
 # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init --path)"
 
 # brew
 export PATH="/usr/local/sbin:$PATH"
