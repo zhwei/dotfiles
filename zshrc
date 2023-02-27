@@ -233,45 +233,45 @@ phpunit-auto() {
 	fi
 }
 ## phpbrew
-export PHPBREW_SET_PROMPT=0
-export PHPBREW_SYSTEM_PHP="/usr/local/bin/php"
-export PHPBREW_RC_ENABLE=1
-source ~/.phpbrew/bashrc
-alias pb='phpbrew'
-pbauto() {
-    if [[ -e $PWD/.phpbrewrc ]]; then
-        cat $PWD/.phpbrewrc
-        source $PWD/.phpbrewrc
-    else
-        echo "ERROR: .phpbrewrc not found"
-    fi;
-}
-## phpbrew prompt for pure
-_prompt_pure_phpbrew_version() {
-    if [[ -n "$PHPBREW_PHP" ]]; then
-        psvar[12]="$PHPBREW_PHP $psvar[12]"
-    fi
-}
-add-zsh-hook precmd _prompt_pure_phpbrew_version
+### export PHPBREW_SET_PROMPT=0
+### export PHPBREW_SYSTEM_PHP="/usr/local/bin/php"
+### export PHPBREW_RC_ENABLE=1
+### source ~/.phpbrew/bashrc
+### alias pb='phpbrew'
+### pbauto() {
+###     if [[ -e $PWD/.phpbrewrc ]]; then
+###         cat $PWD/.phpbrewrc
+###         source $PWD/.phpbrewrc
+###     else
+###         echo "ERROR: .phpbrewrc not found"
+###     fi;
+### }
+### ## phpbrew prompt for pure
+### _prompt_pure_phpbrew_version() {
+###     if [[ -n "$PHPBREW_PHP" ]]; then
+###         psvar[12]="$PHPBREW_PHP $psvar[12]"
+###     fi
+### }
+### add-zsh-hook precmd _prompt_pure_phpbrew_version
 ## phpenv
-export PATH="$HOME/.phpenv/bin:$PATH"
-export PATH="$HOME/.phpenv/shims:${PATH}"
-source "$HOME/.phpenv/libexec/../completions/phpenv.zsh"
-phpenv rehash 2>/dev/null
-phpenv() {
-  local command
-  command="$1"
-  if [ "$#" -gt 0 ]; then
-    shift
-  fi
-
-  case "$command" in
-  shell)
-    eval `phpenv "sh-$command" "$@"`;;
-  *)
-    command phpenv "$command" "$@";;
-  esac
-}
+### export PATH="$HOME/.phpenv/bin:$PATH"
+### export PATH="$HOME/.phpenv/shims:${PATH}"
+### source "$HOME/.phpenv/libexec/../completions/phpenv.zsh"
+### phpenv rehash 2>/dev/null
+### phpenv() {
+###   local command
+###   command="$1"
+###   if [ "$#" -gt 0 ]; then
+###     shift
+###   fi
+### 
+###   case "$command" in
+###   shell)
+###     eval `phpenv "sh-$command" "$@"`;;
+###   *)
+###     command phpenv "$command" "$@";;
+###   esac
+### }
 ## composer
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export COMPOSER_MEMORY_LIMIT=-1
