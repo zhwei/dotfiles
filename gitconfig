@@ -20,6 +20,7 @@
 	throw = reset --hard HEAD
 	throwh = reset --hard HEAD^
 	ss = stash
+	ssa = !git add . && git stash
 	sp = stash pop
 	d = diff
 	pp = !git pull --no-edit && git push

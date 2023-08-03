@@ -1,2 +1,12 @@
 *~
 .DS_Store
+.phpstorm.meta.php
+.idea
+node_modules
+__pycache__
+comiru_tests
+.phpunit.result.cache
+.fleet
+.pnpm-store
+.vscode
+.envrc

@@ -356,7 +356,7 @@ fi
 
 
 # java
-JAVA_HOME=$(/usr/libexec/java_home)
+#JAVA_HOME=$(/usr/libexec/java_home)
 
 
 # bzip2
@@ -390,7 +390,11 @@ predate() {
     xargs -L 1 echo `date +'[%Y-%m-%d %H:%M:%S]'` $1
 }
 
+# direnv
+eval "$(direnv hook zsh)"
+
 
 #####################################################################
 # User Configs <end>
 #####################################################################
+
