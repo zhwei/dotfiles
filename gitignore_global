@@ -10,3 +10,5 @@ comiru_tests
 .pnpm-store
 .vscode
 .envrc
+/venv
+.run

@@ -372,12 +372,10 @@ fi
 
 
 ## gcp
-enable_gcp() {
-    # The next line updates PATH for the Google Cloud SDK.
-    if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
-    # The next line enables shell command completion for gcloud.
-    if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
-}
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/dotfiles/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/dotfiles/google-cloud-sdk/path.zsh.inc"; fi
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/dotfiles/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/dotfiles/google-cloud-sdk/completion.zsh.inc"; fi
 
 
 # pipenv
@@ -390,11 +388,66 @@ predate() {
     xargs -L 1 echo `date +'[%Y-%m-%d %H:%M:%S]'` $1
 }
 
+
 # direnv
-eval "$(direnv hook zsh)"
+#eval "$(direnv hook zsh)"
 
 
 #####################################################################
 # User Configs <end>
 #####################################################################
 
+function __cb() {
+    setopt local_options errexit
+
+    new_branch_name=$1
+    shift
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            --from_branch)
+                from_branch=$2
+                shift 2
+                ;;
+            --from_origin)
+                from_origin=$2
+                shift 2
+                ;;
+            --stash)
+                stash=true
+                shift
+                ;;
+        esac
+    done
+
+    new_branch_name=${new_branch_name}
+    from_branch=${from_branch:-master}
+    from_origin=${from_origin:-origin}
+    stash=${stash:-false}
+
+    if [ "${stash}" = true ]; then
+      echo "> Stashing changes ..."
+      git add .
+      git stash
+    fi
+
+    echo "> Creating new branch ${new_branch_name} from ${from_origin}/${from_branch} ..."
+    git checkout "${from_branch}"
+    git pull "${from_origin}" "${from_branch}"
+    git checkout -b "${new_branch_name}"
+
+    if [ "${stash}" = true ]; then
+      echo "> Poping stash ..."
+      git stash pop || true
+    fi
+}
+
+function cb() {
+    (
+        set -eu
+        __cb "$@"
+    )
+}
+
+function scb() {
+    cb "$@" --stash
+}
