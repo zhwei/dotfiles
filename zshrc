@@ -365,6 +365,13 @@ export LDFLAGS="-L/usr/local/opt/bzip2/lib"
 export CPPFLAGS="-I/usr/local/opt/bzip2/include"
 
 
+# pipx
+export PATH="/Users/zhwei/.local/bin:$PATH"
+
+# poetry
+export POETRY_VIRTUALENVS_IN_PROJECT=true
+
+
 # acme.sh
 if [ -f "~/.acme.sh/acme.sh.env" ]; then
     . "~/.acme.sh/acme.sh.env"
@@ -424,6 +431,8 @@ function __cb() {
     from_origin=${from_origin:-origin}
     stash=${stash:-false}
 
+    set -e
+
     if [ "${stash}" = true ]; then
       echo "> Stashing changes ..."
       git add .
@@ -439,6 +448,8 @@ function __cb() {
       echo "> Poping stash ..."
       git stash pop || true
     fi
+
+    set +e
 }
 
 function cb() {
@@ -451,3 +462,4 @@ function cb() {
 function scb() {
     cb "$@" --stash
 }
+. "/Users/zhwei/.acme.sh/acme.sh.env"

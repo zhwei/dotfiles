@@ -11,4 +11,6 @@ comiru_tests
 .vscode
 .envrc
 /venv
+/.venv
 .run
+docker-compose.override.yml
